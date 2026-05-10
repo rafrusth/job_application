@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('user_specialties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')
+            $table->foreignId('user_id')
                     ->constrained()
                     ->onDelete('cascade');
-            $table->foreignId('roles_id')
+            $table->foreignId('role_id')
                     ->constrained()
                     ->onDelete('cascade');
-            $table->primary(['id', 'users_id', 'roles_id']);
+            $table->primary(['id', 'user_id', 'role_id']);
             $table->timestamps();
         });
     }

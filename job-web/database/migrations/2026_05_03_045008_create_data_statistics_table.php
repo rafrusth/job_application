@@ -17,12 +17,12 @@ return new class extends Migration
             $table->bigInteger('open_hire');    
             $table->bigInteger('reject');    
             $table->bigInteger('employment');    
-            $table->foreignId('statistics_id')
+            $table->foreignId('statistic_id')
                     ->constrained()
                     ->onDelete('cascade');    
-            $table->foreignId('roles_id')
+            $table->foreignId('role_id')
                     ->constrained()
-                    ->onDelete('cascade');
+                    ->onDelete('set null');
             $table->timestamps();
         });
     }

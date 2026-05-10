@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('qnas', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id')
+                    ->primary();
+            $table->foreign('id')
+                    ->references('id')
+                    ->on('flashcards')
+                    ->onDelete('cascade');
             $table->text('question');
             $table->text('answer');
-            $table->foreignId('flashcards_id')
-                    ->constrained()
-                    ->onDelete('cascade');
             $table->string('type', 15);
             $table->timestamps();
         });

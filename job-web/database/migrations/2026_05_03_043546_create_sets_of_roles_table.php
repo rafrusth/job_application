@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('sets_of_roles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('roles_id')
+            $table->foreignId('role_id')
                     ->constrained()
                     ->onDelete('cascade');
-            $table->foreignId('sets_id')
+            $table->foreignId('set_id')
                     ->constrained()
                     ->onDelete('cascade');
-            $table->primary(['id', 'roles_id', 'sets_id']);
+            $table->primary(['id', 'role_id', 'set_id']);
             $table->timestamps();
         });
     }

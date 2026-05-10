@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('role_based_qnas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('roles_id')
+            $table->foreignId('role_id')
                     ->constrained()
                     ->onDelete('cascade');
-            $table->unsignedBigInteger('specifics_id');
-            $table->foreign('specifics_id')
+            $table->unsignedBigInteger('specific_id');
+            $table->foreign('specific_id')
                     ->references('id')
                     ->on('specifics')
                     ->onDelete('cascade');
-            $table->primary(['id', 'roles_id', 'specifics_id']);
-            $table->unique(['roles_id', 'specifics_id']);
+            $table->primary(['id', 'role_id', 'specific_id']);
+            $table->unique(['role_id', 'specific_id']);
             $table->timestamps();
         });
     }

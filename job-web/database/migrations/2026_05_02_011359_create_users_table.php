@@ -23,10 +23,11 @@ return new class extends Migration
             $table->string('phone_number', 20)
                     ->unique()
                     ->nullable();
-            $table->foreignId('cities_id')
+            $table->foreignId('city_id')
+                    ->nullable()
                     ->constrained('cities')
-                    ->onDelete('cascade')
-                    ->nullable();
+                    ->onDelete('set null');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

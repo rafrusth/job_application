@@ -18,10 +18,10 @@ return new class extends Migration
             $table->text('skill');
             $table->text('project')
                     ->nullable();
-            $table->foreignId('cvs_id')
+            $table->foreignId('cv_id')
                     ->constrained()
                     ->onDelete('cascade');
-            $table->primary(['id', 'cvs_id']);
+            $table->primary(['id', 'cv_id']);
             $table->timestamps();
         });
     }

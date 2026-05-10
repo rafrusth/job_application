@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('list_of_companies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('data_statistics_id')
+            $table->foreignId('data_statistic_id')
                     ->constrained()
                     ->onDelete('cascade');
-            $table->foreignId('companies_id')
+            $table->foreignId('company_id')
                     ->constrained()
                     ->onDelete('cascade');
-            $table->primary(['id', 'data_statistics_id', 'companies_id']);
+            $table->primary(['id', 'data_statistic_id', 'company_id']);
             $table->timestamps();
         });
     }
