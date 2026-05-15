@@ -9,7 +9,7 @@ RUN composer install --no-dev --no-scripts --no-autoloader --ignore-platform-req
 FROM node:22-slim AS frontend-builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 COPY . .
 # Copy vendor files from stage 1 so Vite can find flux.css
 COPY --from=vendor-builder /app/vendor ./vendor
