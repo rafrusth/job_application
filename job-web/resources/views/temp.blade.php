@@ -1,52 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <h2>Register</h2>
-
-    <form method="POST" action="{{ route('custom.register') }}">
-        @csrf
-        <div>
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <br>
-        <div>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <br>
-        <div>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <br>
-        <div>
-            <label for="phone_number">Phone Number:</label><br>
-            <input type="text" id="phone_number" name="phone_number">
-        </div>
-        <br>
-        <div>
-            <label for="type">User Type:</label><br>
-            <select id="type" name="type">
-                <option value="backend">Backend</option>
-                <option value="frontend">Frontend</option>
-                <option value="fullstack">Fullstack</option>
-                <option value="ai-ml">AI/ML</option>
-            </select>
-        </div>
-        <br>
-        <button type="submit">Register</button>
-    </form>
-
-    <br>
-    <a href="{{ route('custom.login') }}">Already have an account? Login here</a>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,7 +47,7 @@
     }
 
     .logo {
-      /* font-family: 'Fraunces', serif; */
+      font-family: 'Fraunces', serif;
       font-weight: 700;
       font-size: 1.15rem;
       letter-spacing: -.02em;
@@ -124,7 +75,7 @@
     }
 
     .copy h1 {
-      /* font-family: 'Fraunces', serif; */
+      font-family: 'Fraunces', serif;
       font-weight: 700;
       font-size: clamp(2.4rem, 4vw, 3.2rem);
       line-height: 1.1;
@@ -267,26 +218,24 @@
       <p>Sign up to create an account.</p>
     </section>
 
-    <form method="POST" action="{{ route('custom.register.step1') }}">
-      @csrf
+    <section>
       <div class="form-wrap">
         <div class="field">
           <label for="name">Full name</label>
-          <input id="name" name="name" type="text" placeholder="Jane Doe" autocomplete="name" required />
+          <input id="name" type="text" placeholder="Jane Doe" autocomplete="name" />
         </div>
 
         <div class="field">
           <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="jane@example.com" autocomplete="email" required />
+          <input id="email" type="email" placeholder="jane@example.com" autocomplete="email" />
         </div>
 
         <div class="btn-wrap">
-          <button type="submit">Sign Up</button>
-
-          <p class="signin-hint">Already have an account? <a href="{{ route('custom.login') }}">Sign in</a></p>
+          <button type="button">Login</button>
+          <p class="signin-hint">Already have an account? <a href="#">Sign in</a></p>
         </div>
       </div>
-    </form>
+    </section>
   </main>
 
 </body>
