@@ -15,6 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             SetTeamUrlDefaults::class,
         ]);
+        
+        $middleware->redirectGuestsTo('/custom-login');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

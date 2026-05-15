@@ -55,6 +55,8 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
+      color: #3d3a36;
+      text-decoration: none;
     }
 
     .nav-item.active {
@@ -112,9 +114,10 @@
     }
 
     .progress-fill {
-      width: 80%;
+      width: 0%;
       height: 100%;
       background: #3f3b38;
+      transition: width 0.3s ease;
     }
 
     .suggestion-box {
@@ -270,26 +273,29 @@
           <span>CV Builder</span>
         </div>
 
-        <div class="nav-item">
+        <a href="{{ route('flashcards.index') }}" class="nav-item">
           <div class="icon"></div>
           <span>Preparation</span>
-        </div>
+        </a>
 
         <div class="nav-item">
           <div class="icon"></div>
           <span>Statistics</span>
         </div>
 
-        <div class="nav-item">
+        <a href="{{ route('profile') }}" class="nav-item">
           <div class="icon"></div>
           <span>Profile</span>
-        </div>
+        </a>
       </nav>
 
-      <div class="logout nav-item">
-        <div class="icon"></div>
-        <span>Logout</span>
-      </div>
+      <form method="POST" action="{{ route('logout') }}" style="margin-top: auto;">
+          @csrf
+          <button type="submit" class="nav-item" style="background: none; border: none; width: 100%; text-align: left; padding: 10px;">
+            <div class="icon"></div>
+            <span>Logout</span>
+          </button>
+      </form>
     </aside>
 
     <!-- Main Content -->
@@ -299,11 +305,11 @@
 
         <div class="progress-header">
           <span>Completions</span>
-          <span>80%</span>
+          <span id="progress-percentage">0%</span>
         </div>
 
         <div class="progress-bar">
-          <div class="progress-fill"></div>
+          <div class="progress-fill" id="progress-fill"></div>
         </div>
 
         <div class="suggestion-box">
@@ -371,5 +377,36 @@
       </div>
     </section>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const textareas = document.querySelectorAll('textarea');
+      const progressPercentage = document.getElementById('progress-percentage');
+      const progressFill = document.getElementById('progress-fill');
+
+      function updateProgress() {
+        let filledCount = 0;
+        textareas.forEach(ta => {
+          if (ta.value.trim() !== '') {
+            filledCount++;
+          }
+        });
+        
+        // Calculate percentage (out of 4 columns)
+        const totalColumns = 4;
+        const percentage = (filledCount / totalColumns) * 100;
+        
+        progressPercentage.textContent = Math.round(percentage) + '%';
+        progressFill.style.width = percentage + '%';
+      }
+
+      textareas.forEach(ta => {
+        ta.addEventListener('input', updateProgress);
+      });
+
+      // Initialize on page load (handles old() values)
+      updateProgress();
+    });
+  </script>
 </body>
 </html>

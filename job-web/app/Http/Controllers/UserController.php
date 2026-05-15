@@ -22,7 +22,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect('/cv/answers');
+        return redirect()->intended('/cv/answers');
     }
 
     public function login(Request $request)
@@ -30,7 +30,7 @@ class UserController extends Controller
         $auth = ['email' => $request->email, 'password' => $request->password];
 
         if (Auth::attempt($auth)) {
-            return redirect()->route('cv.answers');
+            return redirect()->intended(route('cv.answers'));
         }
         else {
             return back()->with('error', 'Invalid credentials');
