@@ -1,12 +1,21 @@
-# --- Stage 1: Build Frontend Assets ---
+# --- Stage 1: PHP Dependencies ---
+FROM composer:latest AS vendor-builder
+WORKDIR /app
+COPY composer.json composer.lock ./
+# We ignore platform reqs here because we just need the files for Vite
+RUN composer install --no-dev --no-scripts --no-autoloader --ignore-platform-reqs
+
+# --- Stage 2: Frontend Assets ---
 FROM node:22-slim AS frontend-builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
+# Copy vendor files from stage 1 so Vite can find flux.css
+COPY --from=vendor-builder /app/vendor ./vendor
 RUN npm run build
 
-# --- Stage 2: PHP & Apache ---
+# --- Stage 3: Final Image ---
 FROM php:8.3-apache
 
 # Install system dependencies
@@ -25,29 +34,22 @@ RUN apt-get update && apt-get install -y \
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
-
-# Copy Apache config
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# Set working directory
 WORKDIR /var/www/html
-
-# Copy project files
 COPY . .
 
-# Copy built assets from frontend-builder stage
+# Copy everything from the builders
+COPY --from=vendor-builder /app/vendor ./vendor
 COPY --from=frontend-builder /app/public/build ./public/build
 
-# Install Composer
+# Final composer optimization
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install --no-dev --optimize-autoloader
+RUN composer dump-autoload --optimize
 
-# Set permissions
+# Permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Expose port 80
 EXPOSE 80
-
-# Start Apache
 CMD ["apache2-foreground"]
