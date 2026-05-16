@@ -6,7 +6,7 @@
   <title>PathFinder – Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* === PathFinder Design System === */
+
     * {
       margin: 0;
       padding: 0;
@@ -44,7 +44,6 @@
       padding: 20px;
     }
 
-    /* Sidebar */
     .sidebar {
       width: 180px;
       display: flex;
@@ -102,7 +101,6 @@
       object-fit: contain;
     }
 
-    /* Main Content */
     .main {
       flex: 1;
       display: grid;
@@ -120,7 +118,6 @@
       border-radius: 4px;
     }
 
-    /* ── DASHBOARD SPECIFIC ── */
     .top-row {
       display: grid;
       grid-template-columns: 1fr 340px;
@@ -278,7 +275,6 @@
     .right-col { animation: fadeUp .45s .18s ease both; }
     .bottom-row { animation: fadeUp .45s .28s ease both; }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
@@ -297,7 +293,7 @@
       }
       .logo { margin-bottom: 0; font-size: 24px; }
       nav { flex-direction: row; gap: 8px; }
-      .nav-item span { display: none; } /* Hide text on very small nav */
+      .nav-item span { display: none; }
       .nav-item { padding: 8px; }
       
       .main {
@@ -315,7 +311,7 @@
         align-items: flex-start;
       }
       .illus-placeholder {
-        display: none; /* Hide illustration on mobile to save space */
+        display: none; 
       }
     }
   </style>
@@ -357,13 +353,11 @@
       </form>
     </aside>
 
-  <!-- ── MAIN ──────────────────────────────────── -->
+
   <main class="main">
 
-    <!-- TOP ROW -->
-    <div class="top-row">
 
-      <!-- Welcome card -->
+    <div class="top-row">
       <div class="welcome-card">
         <div class="welcome-text">
           <p>Welcome,</p>
@@ -371,31 +365,24 @@
           <span class="role-badge">{{ ucfirst(auth()->user()?->type ?? 'member') }}</span>
         </div>
 
-        <!-- Illustration -->
         <div class="illus-placeholder">
           <img src="{{ asset('images/hi.png') }}" alt="Hi Illustration">
         </div>
       </div>
-
-      <!-- Right column -->
       <div class="right-col">
-
-        <!-- CV card -->
         <a href="{{ route('cv.answers') }}" class="cv-card">
           <div class="cv-card-top">
             <div>
               <h3>Generate Your CV!</h3>
-              <p>Generate your own CV based on your personal experience</p>
+              <p>Generate your own CV based on <br> your personal experience</p>
             </div>
             <div class="cv-chip">
-              <span>CV Draft</span>
-              <span>26-04-2026</span>
               <span class="arrow">↘</span>
+              <span>CV </span>
+              <span>Builder</span>
             </div>
           </div>
         </a>
-
-        <!-- Got No Time card -->
         <a href="{{ route('flashcards.index') }}" class="gnt-card">
           <div class="gnt-header">
             <h3>Got No Time?</h3>
@@ -410,8 +397,6 @@
                 <p style="font-size: 13px; color: var(--ink-lt);">No scores yet</p>
               </div>
             </div>
-
-            <!-- Mini question card -->
             <div class="q-card-mini">
               <div class="q-chip">⚙️ Technical</div>
               <p>What's the difference between using SQL and NoSQL?</p>
@@ -419,20 +404,12 @@
           </div>
         </a>
 
-      </div><!-- /right-col -->
-    </div><!-- /top-row -->
-
-    <!-- BOTTOM ROW -->
+      </div>
+    </div>
     <div class="bottom-row">
-
-      <!-- Chart card -->
       <div class="chart-card">
         <div class="chart-header">
           <h3>Appliers</h3>
-          <div class="legend">
-            <span class="legend-item"><span class="legend-dot"></span>Rejected</span>
-            <span class="legend-item"><span class="legend-dot accepted"></span>Accepted</span>
-          </div>
         </div>
 
         <div class="stats-row">
@@ -446,7 +423,7 @@
           </div>
           <div class="stat-block">
             <label>Acceptance</label>
-            <div class="stat-pct" style="font-size:28px;font-weight:700;">{{ $summary['rate'] }}%</div>
+            <div class="stat-val">{{ $summary['rate'] }}%</div>
           </div>
           <div class="stat-block">
             <label>Rejected</label>
@@ -476,7 +453,6 @@
             $areaPath = $path . " L690,130 L20,130 Z";
         @endphp
 
-        <!-- Area chart (SVG) -->
         <div class="chart-wrap">
           <svg class="area-chart" viewBox="0 0 700 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -486,19 +462,15 @@
               </linearGradient>
             </defs>
 
-            <!-- Grid lines -->
             @for ($i = 0; $i <= 5; $i++)
                 <line x1="0" y1="{{ 116 - ($i * 23) }}"  x2="700" y2="{{ 116 - ($i * 23) }}"  stroke="var(--accent)" stroke-width="1"/>
                 <text x="2" y="{{ 127 - ($i * 23) }}" font-size="10" fill="var(--ink-lt)" font-family="DM Sans">{{ round(($maxVal / 5) * $i) }}</text>
             @endfor
 
-            <!-- Area fill -->
             <path d="{{ $areaPath }}" fill="url(#areaGrad)"/>
 
-            <!-- Line -->
             <path d="{{ $path }}" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-            <!-- X-axis labels -->
             @foreach($chartData as $index => $point)
                 @php $x = 20 + ($index * (670 / max(1, $chartData->count() - 1))); @endphp
                 <text x="{{ $x }}" y="138" font-size="9" fill="var(--ink-lt)" font-family="DM Sans" text-anchor="middle">{{ $point['label'] }}</text>
@@ -506,8 +478,6 @@
           </svg>
         </div>
       </div>
-
-      <!-- Companies Hiring card -->
       <div class="companies-card">
         <h3>Companies Hiring</h3>
 
@@ -526,7 +496,7 @@
         @endforeach
       </div>
 
-    </div><!-- /bottom-row -->
+    </div>
   </main>
 </div>
 

@@ -100,13 +100,12 @@
       position: relative;
     }
     .step.completed .step-num::after {
-      /* content: '✓'; */
       position: absolute;
       inset: 0;
       display: flex; align-items: center; justify-content: center;
       font-size: 14px;
     }
-    /* .step.completed .step-num span { opacity: 0; } */
+
 
     .step-label {
       font-size: 15px;
@@ -208,7 +207,7 @@
     .left  { animation: fadeUp 0.6s ease both; }
     .right { animation: fadeUp 0.6s ease 0.12s both; }
 
-    /* Responsive */
+
     @media (max-width: 900px) {
       main {
         grid-template-columns: 1fr;

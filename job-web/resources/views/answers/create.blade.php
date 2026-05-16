@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CV Builder</title>
   <style>
-    /* === CLIENT CODE === */
+
     * {
       margin: 0;
       padding: 0;
@@ -29,7 +29,7 @@
     body {
       background: var(--cream);
       color: var(--ink);
-      overflow: hidden; /* Prevent body scroll */
+      overflow: hidden; 
     }
 
     .container {
@@ -107,8 +107,8 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      overflow-y: auto; /* Allow scrolling inside main content if it overflows */
-      padding-right: 10px; /* space for scrollbar */
+      overflow-y: auto; 
+      padding-right: 10px; 
     }
 
     .main-content::-webkit-scrollbar {
@@ -185,7 +185,6 @@
       font-size: 18px;
     }
 
-    /* Form Elements */
     textarea {
       width: 100%;
       min-height: 40px;
@@ -224,12 +223,11 @@
         background: #2a2826;
     }
 
-    /* Preview Panel */
     .preview-panel {
       flex: 1;
       display: flex;
       justify-content: center;
-      align-items: stretch; /* Stretch to fill container height */
+      align-items: stretch;
     }
 
     .preview-box {
@@ -241,7 +239,7 @@
       font-size: 13px;
       padding: 24px;
       white-space: pre-wrap;
-      overflow-y: auto; /* Allow CV to scroll if it's long */
+      overflow-y: auto; 
       line-height: 1.5;
     }
 
@@ -254,11 +252,9 @@
         font-weight: bold;
     }
 
-    /* Error Alerts */
     .alert { padding: 8px; margin-bottom: 12px; border-radius: 8px; font-size: 13px; }
     .alert-error { background: #ffcccc; color: #cc0000; border: 1px solid #cc0000; }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
@@ -328,7 +324,6 @@
       </form>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-content">
       <div class="top-section">
         <h1>CV Builder</h1>
@@ -396,7 +391,6 @@
       </form>
     </main>
 
-    <!-- CV Preview -->
     <section class="preview-panel">
       <div class="preview-box">
         @if(session('cvContent'))
@@ -422,7 +416,6 @@
           }
         });
         
-        // Calculate percentage (out of 4 columns)
         const totalColumns = 4;
         const percentage = (filledCount / totalColumns) * 100;
         
@@ -433,8 +426,6 @@
       textareas.forEach(ta => {
         ta.addEventListener('input', updateProgress);
       });
-
-      // Initialize on page load (handles old() values)
       updateProgress();
     });
   </script>

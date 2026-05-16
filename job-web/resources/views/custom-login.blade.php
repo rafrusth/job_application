@@ -1,13 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PathFinder — Login</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PathFinder — Login</title>
 
   <style>
     *, *::before, *::after {
@@ -40,7 +41,7 @@
       flex-direction: column;
     }
 
-    /* ── Nav ── */
+
     nav {
       padding: 28px 52px;
       opacity: 0;
@@ -48,6 +49,7 @@
     }
 
     .logo {
+      /* font-family: 'Fraunces', serif; */
       font-weight: 700;
       font-size: 1.15rem;
       letter-spacing: -.02em;
@@ -55,7 +57,7 @@
       text-decoration: none;
     }
 
-    /* ── Main layout ── */
+
     main {
       flex: 1;
       display: grid;
@@ -68,18 +70,20 @@
       gap: 80px;
     }
 
-    /* ── Left copy ── */
+
     .copy {
       opacity: 0;
       animation: fadeUp .55s .2s ease forwards;
     }
 
     .copy h1 {
+        /* font-family: 'Fraunces', serif; */
         font-weight: 700;
         font-size: clamp(2.4rem, 4vw, 3.2rem);
         line-height: 1.1;
         letter-spacing: -.03em;
         color: var(--ink);
+        /* margin-top: -150px; */
         margin-bottom: 14px;
     }
 
@@ -90,7 +94,7 @@
         line-height: 1.5;
     }
 
-    /* ── Form ── */
+ 
     .form-wrap {
       display: flex;
       flex-direction: column;
@@ -122,7 +126,7 @@
       border: none;
       border-radius: var(--radius);
       padding: 18px 22px;
-      font-family: 'Geist', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 1rem;
       font-weight: 400;
       color: var(--ink);
@@ -140,7 +144,6 @@
       box-shadow: 0 0 0 3px rgba(50,48,45,.12);
     }
 
-    /* ── Button ── */
     .btn-wrap {
       margin-top: 16px;
       opacity: 0;
@@ -171,7 +174,6 @@
       transform: translateY(0);
     }
 
-    /* ── Footer hint ── */
     .signin-hint {
       margin-top: 22px;
       font-size: .85rem;
@@ -188,13 +190,13 @@
       text-underline-offset: 3px;
     }
 
-    /* ── Animation ── */
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── Responsive ── */
+
     @media (max-width: 720px) {
       main {
         grid-template-columns: 1fr;
@@ -219,20 +221,20 @@
 
     <form method="POST" action="{{ route('custom.login') }}">
       @csrf
-      @if(session('error'))
-          <div style="color: #C0392B; margin-bottom: 20px; font-size: 0.9rem;">
-              {{ session('error') }}
-          </div>
-      @endif
       <div class="form-wrap">
         <div class="field">
             <label for="email">Email</label>
             <input type="email" placeholder="Enter Email"  id="email" name="email" required>
+        <!-- </div>
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="Jane Doe" autocomplete="name" /> -->
         </div>
 
         <div class="field">
             <label for="password">Password</label>
             <input type="password" placeholder="Enter Password" id="password" name="password" required>
+          <!-- <label for="email">Email</label>
+          <input id="email" type="email" placeholder="jane@example.com" autocomplete="email" /> -->
         </div>
 
         <div class="btn-wrap">

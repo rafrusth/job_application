@@ -35,13 +35,15 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cv/answers', [CvController::class, 'generate'])->name('cv.generate');
 });
 
-Route::view('/custom-login', 'custom-login')->name('custom.login');
-Route::post('/custom-login', [UserController::class, 'login']);
+Route::middleware('guest')->group(function () {
+    Route::view('/custom-login', 'custom-login')->name('custom.login');
+    Route::post('/custom-login', [UserController::class, 'login']);
 
-Route::view('/custom-register', 'custom-register')->name('custom.register');
-Route::post('/custom-register', [UserController::class, 'postRegistrationStep1'])->name('custom.register.step1');
-Route::get('/custom-register/step2', [UserController::class, 'showRegistrationStep2'])->name('custom.register.step2');
-Route::post('/custom-register/step2', [UserController::class, 'postRegistrationStep2'])->name('custom.register.step2.submit');
+    Route::view('/custom-register', 'custom-register')->name('custom.register');
+    Route::post('/custom-register', [UserController::class, 'postRegistrationStep1'])->name('custom.register.step1');
+    Route::get('/custom-register/step2', [UserController::class, 'showRegistrationStep2'])->name('custom.register.step2');
+    Route::post('/custom-register/step2', [UserController::class, 'postRegistrationStep2'])->name('custom.register.step2.submit');
+});
 
 
 //idk
