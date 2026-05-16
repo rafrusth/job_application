@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PathFinder — Job Preparation Made Easy</title>
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" /> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after {
@@ -55,6 +55,7 @@
     }
 
     .nav-right {
+      font-family: "Geist", sans-serif;
       display: flex;
       align-items: center;
       gap: 36px;
@@ -82,7 +83,7 @@
       border: none;
       border-radius: 999px;
       padding: 12px 26px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: "Geist", sans-serif;
       font-size: .95rem;
       font-weight: 500;
       cursor: pointer;
@@ -97,6 +98,7 @@
 
     /* ── Hero ── */
     .hero {
+      font-family: 'Geist', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -105,8 +107,7 @@
     }
 
     .hero h1 {
-      /* font-family: 'Fraunces', serif; */
-      font-weight: 700;
+      font-weight: 1200;
       font-size: clamp(3rem, 7vw, 5.2rem);
       line-height: 1.08;
       letter-spacing: -.04em;
@@ -119,7 +120,7 @@
 
     .hero p {
       font-size: clamp(1rem, 1.6vw, 1.2rem);
-      font-weight: 300;
+      font-weight: 1200;
       color: var(--ink-mute);
       line-height: 1.6;
       max-width: 560px;
@@ -143,7 +144,7 @@
       border: 1.5px solid var(--ink);
       border-radius: var(--radius);
       padding: 16px 32px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 1rem;
       font-weight: 400;
       cursor: pointer;
@@ -163,7 +164,7 @@
       border: 1.5px solid var(--btn-bg);
       border-radius: var(--radius);
       padding: 16px 32px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', sans-serif;
       font-size: 1rem;
       font-weight: 400;
       cursor: pointer;

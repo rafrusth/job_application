@@ -1,38 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
-
-    @if(session('error'))
-        <div style="color: red;">
-            {{ session('error') }}
-        </div>
-    @endif
-
-    <form method="POST" action="{{ route('custom.login') }}">
-        @csrf
-        <div>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <br>
-        <div>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <br>
-        <button type="submit">Login</button>
-    </form>
-
-    <br>
-    <a href="{{ route('custom.register') }}">Don't have an account? Register here</a>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after {
@@ -82,7 +48,6 @@
     }
 
     .logo {
-      /* font-family: 'Fraunces', serif; */
       font-weight: 700;
       font-size: 1.15rem;
       letter-spacing: -.02em;
@@ -110,13 +75,11 @@
     }
 
     .copy h1 {
-        /* font-family: 'Fraunces', serif; */
         font-weight: 700;
         font-size: clamp(2.4rem, 4vw, 3.2rem);
         line-height: 1.1;
         letter-spacing: -.03em;
         color: var(--ink);
-        /* margin-top: -150px; */
         margin-bottom: 14px;
     }
 
@@ -159,7 +122,7 @@
       border: none;
       border-radius: var(--radius);
       padding: 18px 22px;
-      font-family: 'Fraunces', serif;
+      font-family: 'Geist', sans-serif;
       font-size: 1rem;
       font-weight: 400;
       color: var(--ink);
@@ -265,16 +228,11 @@
         <div class="field">
             <label for="email">Email</label>
             <input type="email" placeholder="Enter Email"  id="email" name="email" required>
-        <!-- </div>
-          <label for="name">Full name</label>
-          <input id="name" type="text" placeholder="Jane Doe" autocomplete="name" /> -->
         </div>
 
         <div class="field">
             <label for="password">Password</label>
             <input type="password" placeholder="Enter Password" id="password" name="password" required>
-          <!-- <label for="email">Email</label>
-          <input id="email" type="email" placeholder="jane@example.com" autocomplete="email" /> -->
         </div>
 
         <div class="btn-wrap">
