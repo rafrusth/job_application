@@ -12,4 +12,9 @@ class Company extends Model
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory;
+
+    public function cities()
+    {
+        return $this->belongsToMany(City::class, 'location_companies');
+    }
 }

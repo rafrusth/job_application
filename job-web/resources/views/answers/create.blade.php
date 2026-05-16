@@ -3,7 +3,7 @@
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,12 +14,21 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'DM Sans';
+      font-family: 'DM Sans', sans-serif;;
+    }
+
+    :root {
+      --cream:   #e7e1d5;
+      --ink:     #3d3a36;
+      --ink-mid: #5a5650;
+      --ink-lt:  #9d978e;
+      --accent:  #c7c0b5;
+      --radius:  18px;
     }
 
     body {
-      background: #e7e1d5;
-      color: #3d3a36;
+      background: var(--cream);
+      color: var(--ink);
       overflow: hidden; /* Prevent body scroll */
     }
 
@@ -36,13 +45,16 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      font-weight: bold;
+      /* font-weight: bold; */
     }
 
     .logo {
+      display: block;
       font-size: 28px;
       font-weight: 700;
       margin-bottom: 40px;
+      text-decoration: none;
+      color: inherit;
     }
 
     nav {
@@ -60,19 +72,30 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      color: #3d3a36;
+      color: var(--ink);
       text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item:hover {
+      background: rgba(0, 0, 0, 0.05);
     }
 
     .nav-item.active {
-      background: #c7c0b5;
+      background: var(--accent);
     }
 
     .icon {
       width: 24px;
       height: 24px;
-      border-radius: 6px;
-      background: #9d978e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
     }
 
     .logout {
@@ -81,7 +104,7 @@
 
     /* Main Content */
     .main-content {
-      width: 380px;
+      flex: 1;
       display: flex;
       flex-direction: column;
       overflow-y: auto; /* Allow scrolling inside main content if it overflows */
@@ -240,64 +263,66 @@
       .container {
         flex-direction: column;
         height: auto;
+        padding: 10px;
       }
       body {
-          overflow: auto;
+        overflow: auto;
       }
       .sidebar {
         width: 100%;
         flex-direction: row;
         margin-bottom: 20px;
+        justify-content: space-between;
+        align-items: center;
       }
-      .logo { margin-bottom: 0; }
-      nav { flex-direction: row; }
+      .logo { margin-bottom: 0; font-size: 24px; }
+      nav { flex-direction: row; gap: 8px; }
+      .nav-item span { display: none; }
+      .nav-item { padding: 8px; }
+      
       .main-content {
         width: 100%;
         overflow-y: visible;
+        padding-right: 0;
       }
+      form { margin-top: 0 !important; }
       .preview-box {
-        height: 600px;
+        height: 500px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Sidebar -->
     <aside class="sidebar">
-      <h1 class="logo">PathFinder</h1>
+      <a href="/" class="logo">PathFinder</a>
 
       <nav>
-        <div class="nav-item">
-          <div class="icon"></div>
+        <a href="{{ route('homepage') }}" class="nav-item">
+          <div class="icon"><img src="{{ asset('images/icons/home.png') }}" alt="Home"></div>
           <span>Home</span>
-        </div>
+        </a>
 
-        <div class="nav-item active">
-          <div class="icon"></div>
+        <a href="{{ route('cv.answers') }}" class="nav-item active">
+          <div class="icon"><img src="{{ asset('images/icons/cv.png') }}" alt="CV Builder"></div>
           <span>CV Builder</span>
-        </div>
+        </a>
 
         <a href="{{ route('flashcards.index') }}" class="nav-item">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/prep.png') }}" alt="Preparation"></div>
           <span>Preparation</span>
         </a>
 
-        <div class="nav-item">
-          <div class="icon"></div>
-          <span>Statistics</span>
-        </div>
-
         <a href="{{ route('profile') }}" class="nav-item">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/profile.png') }}" alt="Profile"></div>
           <span>Profile</span>
         </a>
       </nav>
 
       <form method="POST" action="{{ route('logout') }}" style="margin-top: auto;">
           @csrf
-          <button type="submit" class="nav-item" style="background: none; border: none; width: 100%; text-align: left; padding: 10px;">
-            <div class="icon"></div>
+          <button type="submit" class="nav-item" style="background: none; border: none; width: 100%; text-align: left; cursor: pointer; font-weight: 600;">
+            <div class="icon"><img src="{{ asset('images/icons/logout.png') }}" alt="Logout"></div>
             <span>Logout</span>
           </button>
       </form>

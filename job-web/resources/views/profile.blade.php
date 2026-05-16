@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Profile - PathFinder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* === PathFinder Design System === */
     * {
@@ -17,9 +14,26 @@
       font-family: 'DM Sans', sans-serif;
     }
 
+    :root {
+      --cream:   #e7e1d5;
+      --ink:     #3d3a36;
+      --ink-mid: #5a5650;
+      --ink-lt:  #9d978e;
+      --yellow:  #F0B429;
+      --yellow-lt: #FBE7A3;
+      --card:    #d7d1c5;
+      --card-dark: #3d3a36;
+      --bar-dark: #3d3a36;
+      --bar-lt:  #cfc7bb;
+      --accent:  #c7c0b5;
+      --radius:  18px;
+      --radius-sm: 10px;
+      --shadow:  0 2px 12px rgba(0,0,0,.05);
+    }
+
     body {
-      background: #e7e1d5;
-      color: #3d3a36;
+      background: var(--cream);
+      color: var(--ink);
       overflow: hidden;
     }
 
@@ -39,6 +53,7 @@
     }
 
     .logo {
+      display: block;
       font-size: 28px;
       font-weight: 700;
       margin-bottom: 40px;
@@ -61,26 +76,47 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      color: #3d3a36;
+      color: var(--ink);
       text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item:hover {
+      background: rgba(0, 0, 0, 0.05);
     }
 
     .nav-item.active {
-      background: #c7c0b5;
+      background: var(--accent);
     }
 
     .icon {
       width: 24px;
       height: 24px;
-      border-radius: 6px;
-      background: #9d978e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
     }
 
     /* Main Content */
     .main-content {
-      width: 450px;
+      flex: 1;
       display: flex;
       flex-direction: column;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .main-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .main-content::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
     }
 
     .top-section h1 {
@@ -89,8 +125,8 @@
     }
 
     .profile-card {
-      background: #d7d1c5;
-      border-radius: 16px;
+      background: var(--card);
+      border-radius: var(--radius);
       padding: 24px;
       margin-bottom: 20px;
     }
@@ -106,7 +142,7 @@
     .label {
       font-size: 12px;
       font-weight: bold;
-      color: #7a756d;
+      color: var(--ink-lt);
       text-transform: uppercase;
       margin-bottom: 4px;
     }
@@ -119,44 +155,52 @@
     .action-btn {
       display: block;
       width: 100%;
-      background: #403d3a;
+      background: var(--card-dark);
       color: white;
       text-align: center;
       padding: 14px;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       text-decoration: none;
       font-weight: bold;
       margin-top: 10px;
+      transition: opacity 0.2s;
     }
 
     .action-btn:hover {
-      background: #2a2826;
+      opacity: 0.9;
     }
 
     .btn-secondary {
-        background: #9d978e;
+        background: var(--ink-lt);
     }
 
-    /* Logout Form */
-    .logout-form {
-        margin-top: auto;
-    }
-    
-    .logout-btn {
-        background: none;
-        border: none;
-        width: 100%;
-        text-align: left;
-        padding: 0;
-        font: inherit;
-        cursor: pointer;
-    }
-
+    /* Responsive */
     @media (max-width: 900px) {
-      .container { flex-direction: column; height: auto; }
-      body { overflow: auto; }
-      .sidebar { width: 100%; flex-direction: row; margin-bottom: 20px; }
-      .main-content { width: 100%; }
+      .container {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+      }
+      body {
+        overflow: auto;
+      }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        margin-bottom: 20px;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo { margin-bottom: 0; font-size: 24px; }
+      nav { flex-direction: row; gap: 8px; }
+      .nav-item span { display: none; }
+      .nav-item { padding: 8px; }
+      
+      .main-content {
+        width: 100%;
+        overflow-y: visible;
+        padding-right: 0;
+      }
     }
   </style>
 </head>
@@ -167,36 +211,31 @@
       <a href="/" class="logo">PathFinder</a>
 
       <nav>
-        <a href="/" class="nav-item">
-          <div class="icon"></div>
+        <a href="{{ route('homepage') }}" class="nav-item">
+          <div class="icon"><img src="{{ asset('images/icons/home.png') }}" alt="Home"></div>
           <span>Home</span>
         </a>
 
         <a href="{{ route('cv.answers') }}" class="nav-item">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/cv.png') }}" alt="CV Builder"></div>
           <span>CV Builder</span>
         </a>
 
         <a href="{{ route('flashcards.index') }}" class="nav-item">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/prep.png') }}" alt="Preparation"></div>
           <span>Preparation</span>
         </a>
 
-        <div class="nav-item">
-          <div class="icon"></div>
-          <span>Statistics</span>
-        </div>
-
         <a href="{{ route('profile') }}" class="nav-item active">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/profile.png') }}" alt="Profile"></div>
           <span>Profile</span>
         </a>
       </nav>
 
-      <form method="POST" action="{{ route('logout') }}" class="logout-form">
+      <form method="POST" action="{{ route('logout') }}" style="margin-top: auto;">
           @csrf
-          <button type="submit" class="logout-btn nav-item">
-            <div class="icon"></div>
+          <button type="submit" class="nav-item" style="background: none; border: none; width: 100%; text-align: left; cursor: pointer; font-weight: 600;">
+            <div class="icon"><img src="{{ asset('images/icons/logout.png') }}" alt="Logout"></div>
             <span>Logout</span>
           </button>
       </form>

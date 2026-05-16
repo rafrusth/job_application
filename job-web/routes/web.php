@@ -22,7 +22,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CvController;
 use App\Http\Controllers\FlashcardController;
 //custom-welcome as default landing page
-Route::view('/', 'custom-welcome')->name('custom.welcome');
+use App\Http\Controllers\DashboardController;
+Route::get('/', [DashboardController::class, 'index'])->name('homepage');
 
 
 

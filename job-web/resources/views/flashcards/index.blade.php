@@ -3,7 +3,7 @@
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,9 +17,18 @@
       font-family: 'DM Sans', sans-serif;
     }
 
+    :root {
+      --cream:   #e7e1d5;
+      --ink:     #3d3a36;
+      --ink-mid: #5a5650;
+      --ink-lt:  #9d978e;
+      --accent:  #c7c0b5;
+      --radius:  18px;
+    }
+
     body {
-      background: #e7e1d5;
-      color: #3d3a36;
+      background: var(--cream);
+      color: var(--ink);
       overflow: hidden; /* Prevent body scroll */
     }
 
@@ -39,9 +48,12 @@
     }
 
     .logo {
+      display: block;
       font-size: 28px;
       font-weight: 700;
       margin-bottom: 40px;
+      text-decoration: none;
+      color: inherit;
     }
 
     nav {
@@ -59,19 +71,30 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      color: #3d3a36;
+      color: var(--ink);
       text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item:hover {
+      background: rgba(0, 0, 0, 0.05);
     }
 
     .nav-item.active {
-      background: #c7c0b5;
+      background: var(--accent);
     }
 
     .icon {
       width: 24px;
       height: 24px;
-      border-radius: 6px;
-      background: #9d978e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
     }
 
     /* === MAIN CONTENT === */
@@ -93,7 +116,7 @@
     }
 
     .setup-container {
-      background: #f5f5f5;
+      background: #f2f2f2ff;
       padding: 40px;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -193,6 +216,7 @@
       .container {
         flex-direction: column;
         height: auto;
+        padding: 10px;
       }
       body {
         overflow: auto;
@@ -201,13 +225,61 @@
         width: 100%;
         flex-direction: row;
         margin-bottom: 20px;
+        justify-content: space-between;
+        align-items: center;
       }
-      .logo { margin-bottom: 0; }
-      nav { flex-direction: row; }
+      .logo { margin-bottom: 0; font-size: 24px; }
+      nav { flex-direction: row; gap: 8px; }
+      .nav-item span { display: none; }
+      .nav-item { padding: 8px; }
+      
       .main-content {
         width: 100%;
         overflow-y: visible;
+        padding-right: 0;
       }
+      form { margin-top: 0 !important; }
+    }
+    /* Recent Scores */
+    .recent-scores {
+      width: 100%;
+      max-width: 500px;
+      margin: 30px auto 0;
+    }
+    .recent-scores h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--ink);
+    }
+    .score-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .score-card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .score-card .val {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .score-card .meta {
+      font-size: 11px;
+      color: var(--ink-lt);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .score-card .date {
+      font-size: 10px;
+      color: var(--ink-lt);
+      margin-top: 4px;
     }
   </style>
 </head>
@@ -215,39 +287,34 @@
   <div class="container">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h1 class="logo">PathFinder</h1>
+      <a href="/" class="logo">PathFinder</a>
 
       <nav>
-        <a href="/" class="nav-item">
-          <div class="icon"></div>
+        <a href="{{ route('homepage') }}" class="nav-item">
+          <div class="icon"><img src="{{ asset('images/icons/home.png') }}" alt="Home"></div>
           <span>Home</span>
         </a>
 
         <a href="{{ route('cv.answers') }}" class="nav-item">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/cv.png') }}" alt="CV Builder"></div>
           <span>CV Builder</span>
         </a>
 
         <a href="{{ route('flashcards.index') }}" class="nav-item active">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/prep.png') }}" alt="Preparation"></div>
           <span>Preparation</span>
         </a>
 
-        <div class="nav-item">
-          <div class="icon"></div>
-          <span>Statistics</span>
-        </div>
-
         <a href="{{ route('profile') }}" class="nav-item">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/profile.png') }}" alt="Profile"></div>
           <span>Profile</span>
         </a>
       </nav>
 
       <form method="POST" action="{{ route('logout') }}" style="margin-top: auto;">
           @csrf
-          <button type="submit" class="nav-item" style="background: none; border: none; width: 100%; text-align: left; padding: 10px;">
-            <div class="icon"></div>
+          <button type="submit" class="nav-item" style="background: none; border: none; width: 100%; text-align: left; cursor: pointer; font-weight: 600;">
+            <div class="icon"><img src="{{ asset('images/icons/logout.png') }}" alt="Logout"></div>
             <span>Logout</span>
           </button>
       </form>
@@ -324,6 +391,11 @@
           <button type="submit" class="btn-primary" id="startBtn">Generate & Start</button>
         </form>
       </div>
+
+      <div class="recent-scores" id="recentScoresArea" style="display: none;">
+          <h2>Recent Performance</h2>
+          <div class="score-list" id="scoreList"></div>
+      </div>
     </main>
   </div>
 
@@ -347,6 +419,22 @@
         document.getElementById('startBtn').style.opacity = '0.7';
         document.getElementById('startBtn').style.pointerEvents = 'none';
     });
+    
+    // Load recent scores
+    window.onload = function() {
+      const scores = JSON.parse(localStorage.getItem('flashcard_scores') || '[]');
+      if (scores.length > 0) {
+        document.getElementById('recentScoresArea').style.display = 'block';
+        const list = document.getElementById('scoreList');
+        list.innerHTML = scores.map(s => `
+          <div class="score-card">
+            <div class="meta">${s.difficulty}</div>
+            <div class="val">${s.score}%</div>
+            <div class="date">${s.date}</div>
+          </div>
+        `).join('');
+      }
+    };
   </script>
 </body>
 </html>

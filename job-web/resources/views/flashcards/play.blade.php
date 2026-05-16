@@ -3,7 +3,7 @@
 <head>
       <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,9 +41,12 @@
     }
 
     .logo {
+      display: block;
       font-size: 28px;
       font-weight: 700;
       margin-bottom: 40px;
+      text-decoration: none;
+      color: inherit;
     }
 
     nav {
@@ -61,23 +64,30 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      color: #3d3a36;
+      color: var(--ink);
       text-decoration: none;
+      transition: all 0.2s ease;
     }
 
     .nav-item:hover {
-      background: rgba(0,0,0,0.03);
+      background: rgba(0, 0, 0, 0.05);
     }
 
     .nav-item.active {
-      background: #c7c0b5;
+      background: var(--accent);
     }
 
     .icon {
       width: 24px;
       height: 24px;
-      border-radius: 6px;
-      background: #9d978e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
     }
 
     /* === MAIN CONTENT === */
@@ -250,12 +260,32 @@
     }
 
     @media (max-width: 900px) {
-      .container { flex-direction: column; height: auto; padding: 10px; }
-      body { overflow: auto; }
-      .sidebar { width: 100%; flex-direction: row; margin-bottom: 20px; }
-      .main-content { width: 100%; padding: 20px; }
-      .logo { margin-bottom: 0; }
-      nav { flex-direction: row; }
+      .container {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+      }
+      body {
+        overflow: auto;
+      }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        margin-bottom: 20px;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo { margin-bottom: 0; font-size: 24px; }
+      nav { flex-direction: row; gap: 8px; }
+      .nav-item span { display: none; }
+      .nav-item { padding: 8px; }
+      
+      .main-content {
+        width: 100%;
+        overflow-y: visible;
+        padding-right: 0;
+      }
+      form { margin-top: 0 !important; }
     }
   </style>
 </head>
@@ -263,39 +293,34 @@
   <div class="container">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h1 class="logo">PathFinder</h1>
+      <a href="/" class="logo">PathFinder</a>
 
       <nav>
-        <a href="/" class="nav-item">
-          <div class="icon"></div>
+        <a href="{{ route('homepage') }}" class="nav-item">
+          <div class="icon"><img src="{{ asset('images/icons/home.png') }}" alt="Home"></div>
           <span>Home</span>
         </a>
 
         <a href="{{ route('cv.answers') }}" class="nav-item">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/cv.png') }}" alt="CV Builder"></div>
           <span>CV Builder</span>
         </a>
 
         <a href="{{ route('flashcards.index') }}" class="nav-item active">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/prep.png') }}" alt="Preparation"></div>
           <span>Preparation</span>
         </a>
 
-        <div class="nav-item">
-          <div class="icon"></div>
-          <span>Statistics</span>
-        </div>
-
         <a href="{{ route('profile') }}" class="nav-item">
-          <div class="icon"></div>
+          <div class="icon"><img src="{{ asset('images/icons/profile.png') }}" alt="Profile"></div>
           <span>Profile</span>
         </a>
       </nav>
 
       <form method="POST" action="{{ route('logout') }}" style="margin-top: auto;">
           @csrf
-          <button type="submit" class="nav-item" style="background: none; border: none; width: 100%; text-align: left; padding: 10px;">
-            <div class="icon"></div>
+          <button type="submit" class="nav-item" style="background: none; border: none; width: 100%; text-align: left; cursor: pointer; font-weight: 600;">
+            <div class="icon"><img src="{{ asset('images/icons/logout.png') }}" alt="Logout"></div>
             <span>Logout</span>
           </button>
       </form>
@@ -417,6 +442,27 @@
       // Animate the circle
       const circle = document.getElementById('scoreCircle');
       circle.style.background = `conic-gradient(#3d3a36 ${score}%, #EAE5DA ${score}%)`;
+
+      saveScoreToLocal(score);
+    }
+
+    function saveScoreToLocal(score) {
+      const MAX_SCORES = 4;
+      let scores = JSON.parse(localStorage.getItem('flashcard_scores') || '[]');
+      
+      // Add new score with timestamp
+      scores.unshift({
+        score: score,
+        date: new Date().toLocaleDateString(),
+        difficulty: difficulty
+      });
+
+      // Keep only recent 4
+      if (scores.length > MAX_SCORES) {
+        scores = scores.slice(0, MAX_SCORES);
+      }
+
+      localStorage.setItem('flashcard_scores', JSON.stringify(scores));
     }
 
     // Init
