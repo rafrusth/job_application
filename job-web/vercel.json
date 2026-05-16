@@ -2,6 +2,7 @@
 "version": 2,
 "framework": null,
 "outputDirectory": "public",
+"buildCommand": "bash build.sh",
 "functions": {
     "api/index.php": {
     "runtime": "vercel-php@0.7.2"
@@ -12,6 +13,5 @@
     "src": "/(.*)",
     "dest": "/api/index.php"
     }
-],
-"buildCommand": "bash build.sh"
+]
 }
