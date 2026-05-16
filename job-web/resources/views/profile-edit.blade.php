@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile - PathFinder</title>
+  <title>Edit Profile - PathFinder</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* === PathFinder Design System === */
@@ -127,51 +127,81 @@
     .profile-card {
       background: var(--card);
       border-radius: var(--radius);
-      padding: 24px;
+      padding: 32px;
       margin-bottom: 20px;
+      max-width: 600px;
     }
 
-    .info-item {
-      margin-bottom: 20px;
+    .form-group {
+      margin-bottom: 24px;
     }
 
-    .info-item:last-child {
+    .form-group:last-child {
       margin-bottom: 0;
     }
 
-    .label {
+    label {
+      display: block;
       font-size: 12px;
       font-weight: bold;
       color: var(--ink-lt);
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
     }
 
-    .value {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .action-btn {
-      display: block;
+    input, select {
       width: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--ink-mid);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .save-btn {
+      flex: 1;
       background: var(--card-dark);
       color: white;
-      text-align: center;
-      padding: 14px;
+      border: none;
+      padding: 16px;
       border-radius: var(--radius-sm);
-      text-decoration: none;
       font-weight: bold;
-      margin-top: 10px;
+      font-size: 16px;
+      cursor: pointer;
       transition: opacity 0.2s;
     }
 
-    .action-btn:hover {
-      opacity: 0.9;
+    .cancel-btn {
+      flex: 1;
+      background: var(--accent);
+      color: var(--ink);
+      text-align: center;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: opacity 0.2s;
     }
 
-    .btn-secondary {
-        background: var(--ink-lt);
+    .save-btn:hover, .cancel-btn:hover {
+      opacity: 0.9;
     }
 
     /* Responsive */
@@ -244,32 +274,48 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="top-section">
-        <h1>Your Profile</h1>
+        <h1>Edit Profile</h1>
       </div>
 
       <div class="profile-card">
-        <div class="info-item">
-          <div class="label">Name</div>
-          <div class="value">{{ $user->name }}</div>
-        </div>
+        <form action="{{ route('profile.update') }}" method="POST">
+          @csrf
+          
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}" required>
+            @error('name') <span style="color: red; font-size: 12px;">{{ $message }}</span> @enderror
+          </div>
 
-        <div class="info-item">
-          <div class="label">Email</div>
-          <div class="value">{{ $user->email }}</div>
-        </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" required>
+            @error('email') <span style="color: red; font-size: 12px;">{{ $message }}</span> @enderror
+          </div>
 
-        <div class="info-item">
-          <div class="label">Phone Number</div>
-          <div class="value">{{ $user->phone_number ?? 'Not provided' }}</div>
-        </div>
+          <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input type="text" id="phone_number" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}">
+            @error('phone_number') <span style="color: red; font-size: 12px;">{{ $message }}</span> @enderror
+          </div>
 
-        <div class="info-item">
-          <div class="label">Role</div>
-          <div class="value">{{ ucfirst($user->type) }}</div>
-        </div>
+          <div class="form-group">
+            <label for="type">Target Role</label>
+            <select id="type" name="type" required>
+              <option value="backend" {{ old('type', $user->type) == 'backend' ? 'selected' : '' }}>Backend Developer</option>
+              <option value="frontend" {{ old('type', $user->type) == 'frontend' ? 'selected' : '' }}>Frontend Developer</option>
+              <option value="fullstack" {{ old('type', $user->type) == 'fullstack' ? 'selected' : '' }}>Fullstack Developer</option>
+              <option value="ai-ml" {{ old('type', $user->type) == 'ai-ml' || old('type', $user->type) == 'aiml' ? 'selected' : '' }}>AI/ML Engineer</option>
+            </select>
+            @error('type') <span style="color: red; font-size: 12px;">{{ $message }}</span> @enderror
+          </div>
+
+          <div class="actions">
+            <a href="{{ route('profile') }}" class="cancel-btn">Cancel</a>
+            <button type="submit" class="save-btn">Save Changes</button>
+          </div>
+        </form>
       </div>
-
-      <a href="{{ route('profile.edit.custom') }}" class="action-btn">Edit Profile Settings</a>
     </main>
   </div>
 </body>
