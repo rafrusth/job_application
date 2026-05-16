@@ -253,6 +253,11 @@
 
     <form method="POST" action="{{ route('custom.login') }}">
       @csrf
+      @if(session('error'))
+          <div style="color: #C0392B; margin-bottom: 20px; font-size: 0.9rem;">
+              {{ session('error') }}
+          </div>
+      @endif
       <div class="form-wrap">
         <div class="field">
             <label for="email">Email</label>

@@ -38,11 +38,8 @@ class UserController extends Controller
             return redirect()->route('custom.register');
         }
 
-        // Map the form fields to the database fields
-        // Form: pwd, tel, goal
-        // DB: password, phone_number, type
         $validatedData = $request->validate([
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string',
             'phone_number' => 'required|string|max:20',
             'type' => 'required|string|in:backend,frontend,fullstack,ai-ml,aiml',
         ]);
@@ -50,7 +47,7 @@ class UserController extends Controller
         $userData = array_merge($registration_data, [
             'password' => Hash::make($validatedData['password']),
             'phone_number' => $validatedData['phone_number'],
-            'type' => $validatedData['type'] === 'aiml' ? 'ai-ml' : $validatedData['type'],
+            'type' => $validatedData['type'],
         ]);
 
         $user = User::create($userData);
@@ -59,7 +56,7 @@ class UserController extends Controller
 
         $request->session()->forget('registration_data');
 
-        return redirect()->intended(route('cv.answers'));
+        return redirect()->route('cv.answers');
     }
 
     public function register(Request $request)
@@ -67,7 +64,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string',
             'phone_number' => 'nullable|string|max:20',
             'type' => 'required|string|in:backend,frontend,fullstack,ai-ml',
         ]);

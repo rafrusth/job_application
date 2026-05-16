@@ -4,426 +4,345 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PathFinder — Setting Up</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #F7F0E6;
-      --ink:        #333030;
-      --ink-mute:   #A09890;
-      --field-bg:   #E0D8CC;
-      --field-dark: #C8C0B4;
-      --btn-bg:     #2E2C2A;
-      --btn-text:   #F7F0E6;
-      --step-off:   #C8BFB5;
-      --radius:     14px;
+      --cream:   #F5EFE6;
+      --warm-bg: #EDE6DA;
+      --charcoal: #2E2B26;
+      --mid:     #8C8880;
+      --faint:   #C8C3BB;
+      --accent:  #3D3A35;
+      --white:   #FFFFFF;
+      --error:   #C0392B;
+      --radius:  14px;
+      --input-h: 54px;
     }
 
     body {
-      background: var(--bg);
-      color: var(--ink);
       font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* ── Nav ── */
     nav {
-      padding: 28px 52px;
-      opacity: 0;
-      animation: fadeDown .45s .05s ease forwards;
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
     }
-
     .logo {
-      font-family: 'Fraunces', serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: -.02em;
-      color: var(--ink);
+      font-size: 20px;
+      color: var(--charcoal);
+      letter-spacing: -0.3px;
       text-decoration: none;
     }
 
-    /* ── Layout ── */
     main {
       flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: start;
-      max-width: 1180px;
-      width: 100%;
+      gap: 0;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 52px 52px 100px;
-      gap: 80px;
+      width: 100%;
+      padding: 40px 48px 80px;
+      align-items: start;
     }
 
-    /* ── Left panel ── */
     .left {
-      opacity: 0;
-      animation: fadeUp .5s .15s ease forwards;
+      padding-right: 60px;
+      padding-top: 20px;
     }
-
     .left h1 {
-      font-family: 'Fraunces', serif;
-      font-weight: 700;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      letter-spacing: -.03em;
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(40px, 5vw, 58px);
+      color: var(--charcoal);
       line-height: 1.1;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-
-    .left .subtitle {
-      font-size: 1rem;
+    .left p {
+      font-size: 15px;
+      color: var(--mid);
       font-weight: 300;
-      color: var(--ink-mute);
-      margin-bottom: 52px;
+      margin-bottom: 56px;
     }
 
-    /* Steps */
-    .steps { display: flex; flex-direction: column; gap: 0; }
+    .steps { display: flex; flex-direction: column; gap: 28px; }
 
     .step {
       display: flex;
       align-items: center;
-      gap: 18px;
-      padding: 16px 0;
-      cursor: pointer;
-      position: relative;
+      gap: 16px;
+      transition: opacity 0.3s ease;
     }
-
-    /* connector line between steps */
-    .step:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      left: 19px;
-      top: 52px;
-      width: 2px;
-      height: calc(100% - 20px);
-      background: var(--step-off);
-      border-radius: 2px;
-      transition: background .3s;
-    }
-
-    .step.active:not(:last-child)::after { background: var(--ink); }
+    .step.locked { opacity: 0.4; }
+    .step.completed .step-num { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+    .step.active .step-num   { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
 
     .step-num {
-      width: 40px;
-      height: 40px;
+      width: 36px; height: 36px;
       border-radius: 50%;
-      background: var(--step-off);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .9rem;
-      font-weight: 500;
+      border: 2px solid var(--faint);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600;
+      color: var(--faint);
+      background: transparent;
       flex-shrink: 0;
-      transition: background .3s, transform .2s;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
     }
-
-    .step.active .step-num {
-      background: var(--btn-bg);
-      transform: scale(1.05);
+    .step.completed .step-num::after {
+      /* content: '✓'; */
+      position: absolute;
+      inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
     }
-
-    .step.done .step-num {
-      background: var(--btn-bg);
-    }
+    /* .step.completed .step-num span { opacity: 0; } */
 
     .step-label {
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--step-off);
-      transition: color .3s, font-weight .2s;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--charcoal);
     }
+    .step.locked .step-label { color: var(--faint); font-weight: 400; }
 
-    .step.active .step-label {
-      color: var(--ink);
-      font-weight: 700;
-    }
-
-    .step.done .step-label { color: var(--ink-mute); }
-
-    /* ── Right panel ── */
     .right {
-      padding-top: 4px;
-      opacity: 0;
-      animation: fadeUp .5s .25s ease forwards;
-    }
-
-    /* Step panels */
-    .step-panel { display: none; flex-direction: column; gap: 0; }
-    .step-panel.active { display: flex; }
-
-    .field {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 26px;
-      animation: fadeUp .4s ease forwards;
+      gap: 20px;
+      padding-top: 20px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 46px;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .field-group.locked-field {
+      opacity: 0.35;
+      pointer-events: none;
     }
 
     label {
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .08em;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--ink-mute);
+      color: var(--mid);
     }
 
     input, select {
-      background: var(--field-bg);
-      border: none;
+      width: 100%;
+      height: var(--input-h);
+      background: var(--warm-bg);
+      border: 2px solid transparent;
       border-radius: var(--radius);
-      padding: 18px 22px;
+      padding: 0 18px;
       font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--ink);
+      font-size: 15px;
+      color: var(--charcoal);
       outline: none;
-      width: 100%;
-      transition: background .2s, box-shadow .2s;
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
       appearance: none;
-      -webkit-appearance: none;
     }
-
-    input::placeholder { color: var(--ink-mute); }
-
     input:focus, select:focus {
-      background: var(--field-dark);
-      box-shadow: 0 0 0 3px rgba(50,48,45,.12);
+      border-color: var(--charcoal);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(46,43,38,0.07);
     }
 
-    /* Custom select wrapper */
     .select-wrap { position: relative; }
-
     .select-wrap::after {
-      content: '↓';
+      content: '';
       position: absolute;
-      right: 20px;
-      top: 50%;
+      right: 18px; top: 50%;
       transform: translateY(-50%);
-      color: var(--ink-mute);
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid var(--mid);
       pointer-events: none;
-      font-size: .9rem;
     }
+    select.selected { color: var(--charcoal); }
+    select:not(.selected) { color: var(--faint); }
 
-    select { cursor: pointer; padding-right: 44px; }
-
-    /* Phone row */
-    .phone-row { display: flex; gap: 10px; }
-
-    .phone-code {
-      width: 90px;
-      flex-shrink: 0;
-      text-align: center;
+    .btn-wrap {
+      margin-top: 46px;
     }
-
-    /* Password strength */
-    .strength-bar {
-      display: flex;
-      gap: 5px;
-      margin-top: 6px;
-    }
-
-    .strength-seg {
-      height: 3px;
-      flex: 1;
-      background: var(--step-off);
-      border-radius: 2px;
-      transition: background .3s;
-    }
-
-    .strength-seg.fill-weak   { background: #c0704a; }
-    .strength-seg.fill-medium { background: #c9a44a; }
-    .strength-seg.fill-strong { background: #5a9e6f; }
-
-    .strength-hint {
-      font-size: .72rem;
-      color: var(--ink-mute);
-      margin-top: 4px;
-    }
-
-    /* ── Button ── */
-    .btn-wrap { margin-top: 12px; }
-
-    .btn-next {
+    button {
       width: 100%;
-      background: var(--btn-bg);
-      color: var(--btn-text);
+      height: var(--input-h);
+      background: var(--charcoal);
+      color: var(--cream);
       border: none;
       border-radius: var(--radius);
-      padding: 20px 24px;
       font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: .02em;
+      font-size: 15px;
+      font-weight: 500;
       cursor: pointer;
-      transition: background .2s, transform .15s;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    button:hover { background: #1a1916; transform: translateY(-1px); }
+    button:disabled { background: var(--faint); cursor: not-allowed; transform: none; }
+
+    .error-msg {
+      font-size: 11px;
+      color: var(--error);
+      margin-top: 2px;
     }
 
-    .btn-next:hover { background: #1a1917; transform: translateY(-1px); }
-    .btn-next:active { transform: translateY(0); }
-
-    /* ── Animations ── */
-    @keyframes fadeUp   { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeDown { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
-
-    /* ── Responsive ── */
-    @media (max-width: 720px) {
-      main { grid-template-columns: 1fr; padding: 36px 24px 80px; gap: 44px; }
-      nav  { padding: 22px 24px; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
+    .left  { animation: fadeUp 0.6s ease both; }
+    .right { animation: fadeUp 0.6s ease 0.12s both; }
   </style>
 </head>
 <body>
-
-  <nav><a class="logo" href="pathfinder-landing.html">PathFinder</a></nav>
+  <nav><a class="logo" href="/">PathFinder</a></nav>
 
   <main>
-    <!-- Left: heading + step list -->
     <section class="left">
       <h1>Setting up</h1>
-      <p class="subtitle">Tell us more about yourself and your goal.</p>
+      <p>Tell us more about yourself and your goal.</p>
 
       <div class="steps">
-        <div class="step active" data-step="1" onclick="goTo(1)">
-          <div class="step-num">1</div>
+        <div class="step active" id="step-1">
+          <div class="step-num"><span>1</span></div>
           <span class="step-label">Set Your Password</span>
         </div>
-        <div class="step" data-step="2" onclick="goTo(2)">
-          <div class="step-num">2</div>
+        <div class="step locked" id="step-2">
+          <div class="step-num"><span>2</span></div>
           <span class="step-label">Personal Information</span>
         </div>
-        <div class="step" data-step="3" onclick="goTo(3)">
-          <div class="step-num">3</div>
+        <div class="step locked" id="step-3">
+          <div class="step-num"><span>3</span></div>
           <span class="step-label">Job Target and Goals</span>
         </div>
       </div>
     </section>
 
-    <!-- Right: form panels -->
     <section class="right">
       <form id="regForm" method="POST" action="{{ route('custom.register.step2.submit') }}">
         @csrf
-
-      <!-- Step 1: Password -->
-      <div class="step-panel active" id="panel-1">
-        <div class="field">
+        
+        <!-- Field 1: Password -->
+        <div class="field-group" id="group-password" style="margin-top: 0;">
           <label for="password">Password</label>
-          <input id="password" name="password" type="password" placeholder="Create a password" autocomplete="new-password" required />
+          <input type="password" id="password" name="password" placeholder="Create a strong password" required />
+          @error('password') <span class="error-msg">{{ $message }}</span> @enderror
         </div>
-        <div class="field">
-          <label for="password_confirmation">Confirm Password</label>
-          <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Repeat your password" autocomplete="new-password" required />
-          <!-- check if password configmation the same as password -->
-          <span class="strength-hint" id="strength-hint" style="color: #b91c1c;">Password does not match</span>
-        </div>
-        <div class="btn-wrap">
-          <button type="button" class="btn-next" onclick="next(1)">Continue →</button>
-        </div>
-      </div>
 
-      <!-- Step 2: Personal Info -->
-      <div class="step-panel" id="panel-2">
-        <div class="field">
-          <label>Phone Number</label>
-          <div class="phone-row">
-            <input name="phone_number" type="tel" placeholder="08123456789" autocomplete="tel" style="flex:1;" required />
-          </div>
-        </div>
-        <div class="btn-wrap">
-          <button type="button" class="btn-next" onclick="next(2)">Continue →</button>
-        </div>
-      </div>
 
-      <!-- Step 3: Goals -->
-      <div class="step-panel" id="panel-3">
-        <div class="field">
-          <label for="type">Job Target</label>
+        <!-- Field 2: Phone Number -->
+        <div class="field-group locked-field" id="group-phone">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone_number" placeholder="Enter your phone number" />
+          @error('phone_number') <span class="error-msg">{{ $message }}</span> @enderror
+        </div>
+
+        <!-- Field 3: Role -->
+        <div class="field-group locked-field" id="group-role">
+          <label for="role">Job Target</label>
           <div class="select-wrap">
-            <select id="type" name="type" required>
-              <option value="" disabled selected>Select a goal…</option>
-              <option value="backend">Backend</option>
+            <select id="role" name="type">
               <option value="frontend">Frontend</option>
-              <option value="fullstack">Full Stack</option>
-              <option value="aiml">AI / ML</option>
+              <option value="backend">Backend</option>
+              <option value="fullstack">Fullstack</option>
+              <option value="ai-ml">AI / ML</option>
             </select>
           </div>
-          @error('type') <span class="strength-hint" style="color: #b91c1c;">{{ $message }}</span> @enderror
+          @error('type') <span class="error-msg">{{ $message }}</span> @enderror
         </div>
-        <div class="btn-wrap">
-          <button type="button" class="btn-next" onclick="finish()">Finish Setup ✓</button>
-        </div>
-      </div>
 
+        <div class="btn-wrap">
+          <button id="cta" disabled type="submit">Complete Setup →</button>
+        </div>
       </form>
     </section>
   </main>
 
-  <script>
-    let current = 1;
-    const total = 3;
+<script>
+  const pwdInput   = document.getElementById('password');
+  const phoneInput = document.getElementById('phone');
+  const roleSelect = document.getElementById('role');
+  const cta        = document.getElementById('cta');
 
-    function goTo(n) {
-      // only allow jumping to completed or current steps
-      if (n > current) return;
-      switchTo(n);
+  const groupPhone = document.getElementById('group-phone');
+  const groupRole  = document.getElementById('group-role');
+
+  const step1 = document.getElementById('step-1');
+  const step2 = document.getElementById('step-2');
+  const step3 = document.getElementById('step-3');
+
+  let pwdDone   = false;
+  let phoneDone = false;
+  let roleDone  = false;
+
+  /* ── PASSWORD ── */
+  pwdInput.addEventListener('input', () => {
+    pwdDone = pwdInput.value.length >= 8;
+    updateSteps();
+  });
+
+  /* ── PHONE ── */
+  phoneInput.addEventListener('input', () => {
+    phoneDone = phoneInput.value.length >= 7;
+    phoneInput.classList.toggle('valid', phoneDone);
+    updateSteps();
+  });
+
+  /* ── ROLE ── */
+  roleSelect.addEventListener('change', () => {
+    roleDone = roleSelect.value !== '';
+    roleSelect.classList.toggle('selected', roleDone);
+    updateSteps();
+  });
+
+  function updateSteps() {
+    if (pwdDone) {
+      step1.classList.remove('active'); step1.classList.add('completed');
+      groupPhone.classList.remove('locked-field');
+      step2.classList.remove('locked'); step2.classList.add('active');
+    } else {
+      step1.classList.remove('completed'); step1.classList.add('active');
+      groupPhone.classList.add('locked-field');
+      step2.classList.remove('active', 'completed'); step2.classList.add('locked');
     }
 
-    function next(from) {
-      if (from < total) switchTo(from + 1);
+    if (pwdDone && phoneDone) {
+      step2.classList.remove('active'); step2.classList.add('completed');
+      groupRole.classList.remove('locked-field');
+      step3.classList.remove('locked'); step3.classList.add('active');
+    } else if (pwdDone) {
+      step2.classList.remove('completed'); step2.classList.add('active');
+      groupRole.classList.add('locked-field');
+      step3.classList.remove('active', 'completed'); step3.classList.add('locked');
     }
 
-    function switchTo(n) {
-      // deactivate old
-      document.querySelectorAll('.step').forEach(s => {
-        const sn = parseInt(s.dataset.step);
-        s.classList.remove('active', 'done');
-        if (sn < n) s.classList.add('done');
-        if (sn === n) s.classList.add('active');
-      });
-
-      document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-      document.getElementById('panel-' + n).classList.add('active');
-      current = n;
+    if (pwdDone && phoneDone && roleDone) {
+      step3.classList.remove('active'); step3.classList.add('completed');
     }
 
-    // // Password strength
-    // function checkStrength(val) {
-    //   const segs = [document.getElementById('s1'), document.getElementById('s2'),
-    //                 document.getElementById('s3'), document.getElementById('s4')];
-    //   const hint = document.getElementById('strength-hint');
-
-    //   segs.forEach(s => s.className = 'strength-seg');
-
-    //   let score = 0;
-    //   if (val.length >= 8)              score++;
-    //   if (/[A-Z]/.test(val))            score++;
-    //   if (/[0-9]/.test(val))            score++;
-    //   if (/[^A-Za-z0-9]/.test(val))     score++;
-
-    //   const cls = score <= 1 ? 'fill-weak' : score <= 2 ? 'fill-medium' : 'fill-strong';
-    //   const labels = ['', 'Weak', 'Fair', 'Good', 'Strong'];
-    //   const hints  = ['Use 8+ characters, numbers & symbols',
-    //                   'Add uppercase letters or numbers',
-    //                   'Add a symbol for a stronger password',
-    //                   'Good — add a symbol to make it strong',
-    //                   'Strong password!'];
-
-    //   for (let i = 0; i < score; i++) segs[i].classList.add(cls);
-    //   hint.textContent = hints[score];
-    // }
-
-    function finish() {
-      document.querySelectorAll('.step').forEach(s => s.classList.add('done'));
-      document.querySelector('.step[data-step="3"]').classList.add('active');
-      document.getElementById('regForm').submit();
-    }
-  </script>
+    cta.disabled = !(pwdDone && phoneDone && roleDone);
+  }
+  
+  // Initialize on load (if old data exists)
+  window.onload = () => {
+    if (phoneInput.value) phoneInput.dispatchEvent(new Event('input'));
+    if (roleSelect.value) roleSelect.dispatchEvent(new Event('change'));
+  };
+</script>
 </body>
 </html>
