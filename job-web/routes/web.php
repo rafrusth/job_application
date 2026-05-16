@@ -45,4 +45,4 @@ Route::post('/custom-register/step2', [UserController::class, 'postRegistrationS
 
 
 //idk
-require __DIR__.'/settings.php';
+// require __DIR__.'/settings.php';

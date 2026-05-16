@@ -207,6 +207,32 @@
     }
     .left  { animation: fadeUp 0.6s ease both; }
     .right { animation: fadeUp 0.6s ease 0.12s both; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+        padding: 20px 24px 60px;
+      }
+      .left {
+        padding-right: 0;
+        margin-bottom: 40px;
+      }
+      .steps {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 16px;
+      }
+      .step-label {
+        display: none;
+      }
+      .left h1 {
+        font-size: 38px;
+      }
+      .left p {
+        margin-bottom: 30px;
+      }
+    }
   </style>
 </head>
 <body>
