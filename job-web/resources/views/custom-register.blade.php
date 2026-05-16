@@ -1,52 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <h2>Register</h2>
-
-    <form method="POST" action="{{ route('custom.register') }}">
-        @csrf
-        <div>
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <br>
-        <div>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <br>
-        <div>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <br>
-        <div>
-            <label for="phone_number">Phone Number:</label><br>
-            <input type="text" id="phone_number" name="phone_number">
-        </div>
-        <br>
-        <div>
-            <label for="type">User Type:</label><br>
-            <select id="type" name="type">
-                <option value="backend">Backend</option>
-                <option value="frontend">Frontend</option>
-                <option value="fullstack">Fullstack</option>
-                <option value="ai-ml">AI/ML</option>
-            </select>
-        </div>
-        <br>
-        <button type="submit">Register</button>
-    </form>
-
-    <br>
-    <a href="{{ route('custom.login') }}">Already have an account? Login here</a>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,21 +9,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
-    *, *::before, *::after {
+    :root {
+      --bg: #faf9f6;
+      --text: #1a1a1a;
+      --accent: #2d2d2d;
+      --muted: #666;
+      --border: #e5e5e1;
+      --error: #a33b3b;
+      --font-serif: "Fraunces", serif;
+      --font-sans: "DM Sans", sans-serif;
+    }
+
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    :root {
-      --bg:       #F7F0E6;
-      --ink:      #333030;
-      --ink-mute: #888078;
-      --field-bg: #E0D8CC;
-      --field-ph: #A09890;
-      --btn-bg:   #2E2C2A;
-      --btn-text: #F7F0E6;
-      --radius:   14px;
     }
 
     html, body {

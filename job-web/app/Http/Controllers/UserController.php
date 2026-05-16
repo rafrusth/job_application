@@ -64,17 +64,25 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'phone_number' => 'nullable|string|max:20',
+            'type' => 'required|string|in:backend,frontend,fullstack,ai-ml',
+        ]);
+
         $user = User::create([
-            'name'         => $request->name,
-            'email'        => $request->email,
-            'password'     => Hash::make($request->password), 
-            'type'         => $request->type,
-            'phone_number' => $request->phone_number,
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'type' => $validatedData['type'],
+            'phone_number' => $validatedData['phone_number'],
         ]);
 
         Auth::login($user);
 
-        return redirect()->intended('/cv/answers');
+        return redirect()->intended(route('cv.answers'));
     }
 
     public function login(Request $request)
