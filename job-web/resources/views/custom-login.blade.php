@@ -39,6 +39,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PathFinder — Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after {
@@ -156,7 +159,7 @@
       border: none;
       border-radius: var(--radius);
       padding: 18px 22px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Fraunces', serif;
       font-size: 1rem;
       font-weight: 400;
       color: var(--ink);

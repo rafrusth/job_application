@@ -172,12 +172,12 @@
       margin-bottom: 8px;
       padding: 8px 12px;
       font-size: 13px;
-      color: #fff;
+      color: #2e2b29;
       resize: vertical;
     }
 
     textarea::placeholder {
-      color: #e5e5e5;
+      color: #635e5e;
     }
     
     textarea:focus {
