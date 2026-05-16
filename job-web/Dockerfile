@@ -43,9 +43,12 @@ COPY . .
 COPY --from=vendor-builder /app/vendor ./vendor
 COPY --from=frontend-builder /app/public/build ./public/build
 
+# Ensure no .env file exists so Render variables are used
+RUN rm -f .env
+
 # Final composer optimization
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer dump-autoload --optimize
+RUN composer dump-autoload --optimize --no-scripts
 
 # Permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
