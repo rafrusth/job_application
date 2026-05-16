@@ -16,15 +16,15 @@
     }
 
     :root {
-      --bg:       #F7F0E6;
-      --ink:      #333030;
+      --bg: #F7F0E6;
+      --ink: #333030;
       --ink-mute: #888078;
       --field-bg: #E0D8CC;
       --field-ph: #A09890;
-      --btn-bg:   #2E2C2A;
+      --btn-bg: #2E2C2A;
       --btn-text: #F7F0E6;
-      --radius:   14px;
-      --error:    #C0392B;
+      --radius: 14px;
+      --error: #C0392B;
     }
 
     html, body {
@@ -106,8 +106,12 @@
       animation: fadeUp .55s ease forwards;
     }
 
-    .field:nth-child(1) { animation-delay: .3s; }
-    .field:nth-child(2) { animation-delay: .4s; }
+    .field:nth-child(1) {
+      animation-delay: .3s;
+    }
+    .field:nth-child(2) {
+      animation-delay: .4s;
+    }
 
     label {
       font-size: .78rem;
@@ -187,13 +191,23 @@
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0; transform: translateY(16px);
+      } 
+      to {
+        opacity: 1; transform: translateY(0);
+      }
     }
 
     @media (max-width: 720px) {
-      main { grid-template-columns: 1fr; padding: 40px 28px; gap: 48px; }
-      nav { padding: 24px 28px; }
+      main {
+        grid-template-columns: 1fr;
+        padding: 40px 28px;
+        gap: 48px;
+      } 
+      nav {
+        padding: 24px 28px;
+      }
     }
   </style>
 </head>

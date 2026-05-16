@@ -50,7 +50,7 @@
                                 label="OTP Code"
                                 label:sr-only
                                 class="mx-auto"
-                             />
+                            />
                         </div>
                     </div>
 

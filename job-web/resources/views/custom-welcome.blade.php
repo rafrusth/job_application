@@ -16,13 +16,13 @@
     }
 
     :root {
-      --bg:        #F7F0E6;
-      --ink:       #333030;
-      --ink-mute:  #888078;
-      --card-bg:   #2E2C2A;
-      --btn-bg:    #2E2C2A;
-      --btn-text:  #F7F0E6;
-      --radius:    14px;
+      --bg: #F7F0E6;
+      --ink: #333030;
+      --ink-mute: #888078;
+      --card-bg: #2E2C2A;
+      --btn-bg: #2E2C2A;
+      --btn-text: #F7F0E6;
+      --radius: 14px;
     }
 
     html, body {
@@ -42,11 +42,9 @@
       justify-content: space-between;
       padding: 22px 52px;
       opacity: 1;
-      /* animation: fadeDown .5s .05s ease forwards; */
     }
 
     .logo {
-      /* font-family: 'Fraunces', serif; */
       font-weight: 700;
       font-size: 1.25rem;
       letter-spacing: -.02em;
@@ -189,7 +187,6 @@
     }
 
     .section-block h2 {
-      /* font-family: 'Fraunces', serif; */
       font-weight: 700;
       font-size: clamp(1.8rem, 3vw, 2.5rem);
       letter-spacing: -.03em;
@@ -215,13 +212,21 @@
 
     /* ── Animations ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0; transform: translateY(20px);
+      }
+      to {
+        opacity: 1; transform: translateY(0);
+      }
     }
 
     @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-12px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0; transform: translateY(-12px);
+      }
+      to {
+        opacity: 1; transform: translateY(0);
+      }
     }
 
     /* ── Responsive ── */
@@ -255,7 +260,6 @@
     <p>Some nice copywriting about how delightful and helpful our website is when it comes to job preparation.</p>
     <div class="hero-btns">
       <a class="btn-outline" href="#">Learn More</a>
-      <!-- to custom-register-page -->
       <a class="btn-solid" href="{{ route('custom.register') }}">Start Now →</a>
     </div>
   </section>

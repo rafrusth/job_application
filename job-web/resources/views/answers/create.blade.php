@@ -18,18 +18,18 @@
     }
 
     :root {
-      --cream:   #e7e1d5;
-      --ink:     #3d3a36;
+      --cream: #e7e1d5;
+      --ink: #3d3a36;
       --ink-mid: #5a5650;
-      --ink-lt:  #9d978e;
-      --accent:  #c7c0b5;
-      --radius:  18px;
+      --ink-lt: #9d978e;
+      --accent: #c7c0b5;
+      --radius: 18px;
     }
 
     body {
       background: var(--cream);
       color: var(--ink);
-      overflow: hidden; /* Prevent body scroll */
+      overflow: hidden;
     }
 
     .container {
@@ -45,7 +45,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      /* font-weight: bold; */
     }
 
     .logo {
@@ -107,8 +106,8 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      overflow-y: auto; /* Allow scrolling inside main content if it overflows */
-      padding-right: 10px; /* space for scrollbar */
+      overflow-y: auto; 
+      padding-right: 10px;
     }
 
     .main-content::-webkit-scrollbar {
@@ -229,7 +228,7 @@
       flex: 1;
       display: flex;
       justify-content: center;
-      align-items: stretch; /* Stretch to fill container height */
+      align-items: stretch;
     }
 
     .preview-box {
@@ -241,7 +240,7 @@
       font-size: 13px;
       padding: 24px;
       white-space: pre-wrap;
-      overflow-y: auto; /* Allow CV to scroll if it's long */
+      overflow-y: auto;
       line-height: 1.5;
     }
 
@@ -255,8 +254,17 @@
     }
 
     /* Error Alerts */
-    .alert { padding: 8px; margin-bottom: 12px; border-radius: 8px; font-size: 13px; }
-    .alert-error { background: #ffcccc; color: #cc0000; border: 1px solid #cc0000; }
+    .alert {
+      padding: 8px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+    .alert-error {
+      background: #ffcccc;
+      color: #cc0000;
+      border: 1px solid #cc0000;
+    }
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -275,10 +283,20 @@
         justify-content: space-between;
         align-items: center;
       }
-      .logo { margin-bottom: 0; font-size: 24px; }
-      nav { flex-direction: row; gap: 8px; }
-      .nav-item span { display: none; }
-      .nav-item { padding: 8px; }
+      .logo {
+        margin-bottom: 0;
+        font-size: 24px;
+      }
+      nav {
+        flex-direction: row;
+        gap: 8px;
+      }
+      .nav-item span {
+        display: none;
+      }
+      .nav-item {
+        padding: 8px;
+      }
       
       .main-content {
         width: 100%;
@@ -422,7 +440,6 @@
           }
         });
         
-        // Calculate percentage (out of 4 columns)
         const totalColumns = 4;
         const percentage = (filledCount / totalColumns) * 100;
         
@@ -434,7 +451,6 @@
         ta.addEventListener('input', updateProgress);
       });
 
-      // Initialize on page load (handles old() values)
       updateProgress();
     });
   </script>

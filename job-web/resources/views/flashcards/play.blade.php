@@ -275,17 +275,29 @@
         justify-content: space-between;
         align-items: center;
       }
-      .logo { margin-bottom: 0; font-size: 24px; }
-      nav { flex-direction: row; gap: 8px; }
-      .nav-item span { display: none; }
-      .nav-item { padding: 8px; }
+      .logo {
+        margin-bottom: 0;
+        font-size: 24px;
+      }
+      nav {
+        flex-direction: row;
+        gap: 8px;
+      }
+      .nav-item span {
+        display: none;
+      }
+      .nav-item {
+        padding: 8px;
+      }
       
       .main-content {
         width: 100%;
         overflow-y: visible;
         padding-right: 0;
       }
-      form { margin-top: 0 !important; }
+      form {
+        margin-top: 0 !important;
+      }
     }
   </style>
 </head>
@@ -393,11 +405,9 @@
       questionText.innerText = q.question;
       topicBadge.innerText = q.topic;
       
-      // Update Progress Bar
       const progress = ((currentIndex) / totalQuestions) * 100;
       progressBar.style.width = `${progress}%`;
       
-      // Reset state for new question
       hintBox.style.display = 'none';
       hintBox.innerText = q.hint || 'No hint available.';
       btnHint.classList.remove('btn-disabled');
@@ -428,7 +438,6 @@
       document.getElementById('resultsArea').style.display = 'block';
       progressBar.style.width = '100%';
 
-      // 100 - (hintRate * 40 )- (skiprate * 35)
       const hintRate = hintsUsed / totalQuestions;
       const skipRate = skipsUsed / totalQuestions;
 
@@ -439,7 +448,6 @@
       document.getElementById('statHints').innerText = hintsUsed;
       document.getElementById('statSkips').innerText = skipsUsed;
 
-      // Animate the circle
       const circle = document.getElementById('scoreCircle');
       circle.style.background = `conic-gradient(#3d3a36 ${score}%, #EAE5DA ${score}%)`;
 
@@ -450,14 +458,12 @@
       const MAX_SCORES = 4;
       let scores = JSON.parse(localStorage.getItem('flashcard_scores') || '[]');
       
-      // Add new score with timestamp
       scores.unshift({
         score: score,
         date: new Date().toLocaleDateString(),
         difficulty: difficulty
       });
 
-      // Keep only recent 4
       if (scores.length > MAX_SCORES) {
         scores = scores.slice(0, MAX_SCORES);
       }
@@ -465,7 +471,6 @@
       localStorage.setItem('flashcard_scores', JSON.stringify(scores));
     }
 
-    // Init
     if (questions && questions.length > 0) {
       renderQuestion();
     } else {

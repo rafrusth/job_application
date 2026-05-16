@@ -15,20 +15,20 @@
     }
 
     :root {
-      --cream:   #e7e1d5;
-      --ink:     #3d3a36;
+      --cream: #e7e1d5;
+      --ink: #3d3a36;
       --ink-mid: #5a5650;
-      --ink-lt:  #9d978e;
-      --yellow:  #F0B429;
+      --ink-lt: #9d978e;
+      --yellow: #F0B429;
       --yellow-lt: #FBE7A3;
-      --card:    #d7d1c5;
+      --card: #d7d1c5;
       --card-dark: #3d3a36;
       --bar-dark: #3d3a36;
-      --bar-lt:  #cfc7bb;
-      --accent:  #c7c0b5;
-      --radius:  18px;
+      --bar-lt: #cfc7bb;
+      --accent: #c7c0b5;
+      --radius: 18px;
       --radius-sm: 10px;
-      --shadow:  0 2px 12px rgba(0,0,0,.05);
+      --shadow: 0 2px 12px rgba(0,0,0,.05);
     }
 
     body {
@@ -191,10 +191,20 @@
         justify-content: space-between;
         align-items: center;
       }
-      .logo { margin-bottom: 0; font-size: 24px; }
-      nav { flex-direction: row; gap: 8px; }
-      .nav-item span { display: none; }
-      .nav-item { padding: 8px; }
+      .logo {
+        margin-bottom: 0;
+        font-size: 24px;
+      }
+      nav {
+        flex-direction: row;
+        gap: 8px;
+      }
+      .nav-item span {
+        display: none;
+      }
+      .nav-item {
+        padding: 8px;
+      }
       
       .main-content {
         width: 100%;
