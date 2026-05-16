@@ -23,17 +23,13 @@ use App\Http\Controllers\CvController;
 use App\Http\Controllers\FlashcardController;
 //custom-welcome as default landing page
 use App\Http\Controllers\DashboardController;
-Route::get('/', [DashboardController::class, 'index'])->name('homepage');
-
-
-
-Route::view('/cv/answers', 'answers.create')->name('cv.answers');//temp
-Route::post('/cv/answers', [CvController::class, 'generate'])->name('cv.generate');
-
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('homepage');
     Route::get('/profile', [UserController::class, 'getProfile'])->name('profile');
     Route::get('/flashcards', [FlashcardController::class, 'index'])->name('flashcards.index');
     Route::post('/flashcards/generate', [FlashcardController::class, 'generate'])->name('flashcards.generate');
+    Route::view('/cv/answers', 'answers.create')->name('cv.answers');
+    Route::post('/cv/answers', [CvController::class, 'generate'])->name('cv.generate');
 });
 
 Route::view('/custom-login', 'custom-login')->name('custom.login');

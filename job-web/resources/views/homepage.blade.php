@@ -367,8 +367,8 @@
       <div class="welcome-card">
         <div class="welcome-text">
           <p>Welcome,</p>
-          <h1>{{ auth()->user()->name }}!</h1>
-          <span class="role-badge">{{ ucfirst(auth()->user()->type) }}</span>
+          <h1>{{ auth()->user()?->name ?? 'User' }}!</h1>
+          <span class="role-badge">{{ ucfirst(auth()->user()?->type ?? 'member') }}</span>
         </div>
 
         <!-- Illustration -->

@@ -35,10 +35,13 @@ class DashboardController extends Controller
                             : 0,
         ];
 
-        // Prepare chart data (Appliers trend)
-        $chartData = $dataPoints->map(function($item) {
+        // Prepare chart data (Appliers trend) - Optimized to avoid N+1
+        $stats = Statistic::whereIn('id', $dataPoints->pluck('statistic_id'))->get()->keyBy('id');
+        
+        $chartData = $dataPoints->map(function($item) use ($stats) {
+            $stat = $stats->get($item->statistic_id);
             return [
-                'label' => Statistic::find($item->statistic_id)->name,
+                'label' => $stat ? $stat->name : 'Unknown',
                 'value' => $item->total_applicant,
             ];
         });
