@@ -1,5 +1,4 @@
 <?php
-Illuminate\View\ViewServiceProvider::class;
 return [
 
     /*
