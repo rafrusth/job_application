@@ -46,6 +46,10 @@ class DashboardController extends Controller
             ];
         });
 
+        if (!auth()->check()) {
+            return view('custom-welcome');
+        }
+
         return view('homepage', compact('summary', 'chartData', 'companies'));
     }
 }
