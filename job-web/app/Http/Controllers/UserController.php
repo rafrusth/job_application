@@ -41,7 +41,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'password' => 'required|string',
             'phone_number' => 'required|string|max:20',
-            'type' => 'required|string|in:backend,frontend,fullstack,ai-ml,aiml',
+            'type' => 'required|string',
         ]);
 
         $userData = array_merge($registration_data, [
@@ -66,7 +66,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string',
             'phone_number' => 'nullable|string|max:20',
-            'type' => 'required|string|in:backend,frontend,fullstack,ai-ml',
+            'type' => 'required|string',
         ]);
 
         $user = User::create([
@@ -100,7 +100,25 @@ class UserController extends Controller
         return view('profile', ['user' => $user]);
     }
 
-    public function editProfile(){
+    public function editProfile()
+    {
+        $user = Auth::user();
+        return view('profile-edit', ['user' => $user]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
         
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id, //
+            'phone_number' => 'nullable|string|max:20',
+            'type' => 'required|string', 
+        ]);
+
+        $user->update($validatedData);
+
+        return redirect()->route('profile');
     }
 }

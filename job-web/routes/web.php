@@ -27,6 +27,8 @@ Route::get('/', [DashboardController::class, 'index'])->name('homepage');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserController::class, 'getProfile'])->name('profile');
+    Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profile.edit.custom');
+    Route::post('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::get('/flashcards', [FlashcardController::class, 'index'])->name('flashcards.index');
     Route::post('/flashcards/generate', [FlashcardController::class, 'generate'])->name('flashcards.generate');
     Route::view('/cv/answers', 'answers.create')->name('cv.answers');
