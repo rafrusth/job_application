@@ -332,6 +332,7 @@
       display: flex;
       align-items: center;
       padding-left: 10px;
+      padding-right: 10px;
       font-size: 11px;
       font-weight: 700;
       color: var(--cream);
@@ -368,7 +369,7 @@
     .gnt-bottom {
       display: flex;
       gap: 0;
-      margin-top: 12px;
+      margin-top: 100px;
     }
     .gnt-scores {
       flex: 1; 
@@ -385,7 +386,7 @@
 
     .chart-card {
       background: var(--card);
-      brder-radius: var(--radius);
+      border-radius: var(--radius);
       padding: 24px 26px 0;
     }
     .chart-header {
