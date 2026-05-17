@@ -132,13 +132,17 @@
       align-items: flex-end;
       gap: 24px;
       overflow: hidden;
-      min-height: 300px;
+      min-height: 600px;
       position: relative;
     }
 
     .welcome-text {
       flex: 1;
       padding-bottom: 32px;
+      position: relative;
+      z-index: 1;
+      align-self: flex-start;
+      max-width: 340px;
     }
     .welcome-text p {
       font-size: 16px;
@@ -163,20 +167,25 @@
       border-radius: 99px;
     }
 
-    .illus-placeholder {
-      width: 220px;
-      height: 260px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-    }
+  .illus-placeholder {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    bottom: 0;
+    width: 620px;
+    height: 660px;
+    flex-shrink: 1;
+    display: flex;
+    align-items: flex-end;
+    overflow: visible;
+  }
 
-    .illus-placeholder img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
+  .illus-placeholder img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 660px;
+  }
 
     .right-col {
       display: flex;
@@ -358,11 +367,12 @@
 
     .gnt-bottom {
       display: flex;
-      gap: 12px;
+      gap: 0;
       margin-top: 12px;
     }
     .gnt-scores {
-      flex: 1; }
+      flex: 1; 
+    }
     #homeScoreList {
       min-height: 160px;
     }
@@ -376,7 +386,7 @@
     .chart-card {
       background: var(--card);
       brder-radius: var(--radius);
-      padding: 24px 26px;
+      padding: 24px 26px 0;
     }
     .chart-header {
       display: flex;
@@ -436,7 +446,7 @@
     }
     svg.area-chart {
       width: 100%;
-      height: 140px;
+      height: auto;
     }
 
     .companies-card {

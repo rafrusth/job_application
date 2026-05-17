@@ -227,10 +227,19 @@
     }
 
     @media (max-width: 768px) {
-      nav { padding: 20px 24px; }
-      .nav-links { display: none; }
-      .hero { padding: 60px 24px 70px; }
-      .sections-row { grid-template-columns: 1fr; padding: 0 24px 60px; }
+      nav {
+        padding: 20px 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding: 60px 24px 70px;
+      }
+      .sections-row {
+        grid-template-columns: 1fr;
+        padding: 0 24px 60px;
+      }
     }
   </style>
 </head>

@@ -11,15 +11,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:   #F5EFE6;
+      --cream: #F5EFE6;
       --warm-bg: #EDE6DA;
       --charcoal: #2E2B26;
-      --mid:     #8C8880;
-      --faint:   #C8C3BB;
-      --accent:  #3D3A35;
-      --white:   #FFFFFF;
-      --error:   #C0392B;
-      --radius:  14px;
+      --mid: #8C8880;
+      --faint: #C8C3BB;
+      --accent: #3D3A35;
+      --white: #FFFFFF;
+      --error: #C0392B;
+      --radius: 14px;
       --input-h: 54px;
     }
 

@@ -233,8 +233,6 @@
         <div class="field">
             <label for="password">Password</label>
             <input type="password" placeholder="Enter Password" id="password" name="password" required>
-          <!-- <label for="email">Email</label>
-          <input id="email" type="email" placeholder="jane@example.com" autocomplete="email" /> -->
         </div>
 
         <div class="btn-wrap">
