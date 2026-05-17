@@ -49,7 +49,6 @@
     }
 
     .logo {
-      /* font-family: 'Fraunces', serif; */
       font-weight: 700;
       font-size: 1.15rem;
       letter-spacing: -.02em;
@@ -77,13 +76,11 @@
     }
 
     .copy h1 {
-        /* font-family: 'Fraunces', serif; */
         font-weight: 700;
         font-size: clamp(2.4rem, 4vw, 3.2rem);
         line-height: 1.1;
         letter-spacing: -.03em;
         color: var(--ink);
-        /* margin-top: -150px; */
         margin-bottom: 14px;
     }
 
@@ -94,7 +91,7 @@
         line-height: 1.5;
     }
 
- 
+
     .form-wrap {
       display: flex;
       flex-direction: column;
@@ -110,8 +107,12 @@
       animation: fadeUp .55s ease forwards;
     }
 
-    .field:nth-child(1) { animation-delay: .3s; }
-    .field:nth-child(2) { animation-delay: .4s; }
+    .field:nth-child(1) {
+      animation-delay: .3s;
+    }
+    .field:nth-child(2) {
+      animation-delay: .4s;
+    }
 
     label {
       font-size: .78rem;
@@ -192,8 +193,14 @@
 
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
 
@@ -203,7 +210,9 @@
         padding: 40px 28px 80px;
         gap: 48px;
       }
-      nav { padding: 24px 28px; }
+      nav {
+        padding: 24px 28px;
+      }
     }
   </style>
 </head>
@@ -225,9 +234,6 @@
         <div class="field">
             <label for="email">Email</label>
             <input type="email" placeholder="Enter Email"  id="email" name="email" required>
-        <!-- </div>
-          <label for="name">Full name</label>
-          <input id="name" type="text" placeholder="Jane Doe" autocomplete="name" /> -->
         </div>
 
         <div class="field">

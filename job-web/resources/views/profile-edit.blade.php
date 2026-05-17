@@ -220,10 +220,20 @@
         justify-content: space-between;
         align-items: center;
       }
-      .logo { margin-bottom: 0; font-size: 24px; }
-      nav { flex-direction: row; gap: 8px; }
-      .nav-item span { display: none; }
-      .nav-item { padding: 8px; }
+      .logo {
+        margin-bottom: 0;
+        font-size: 24px;
+      }
+      nav {
+        flex-direction: row;
+        gap: 8px;
+      }
+      .nav-item span {
+        display: none;
+      }
+      .nav-item {
+        padding: 8px;
+      }
       
       .main-content {
         width: 100%;
