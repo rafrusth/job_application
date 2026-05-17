@@ -243,7 +243,7 @@
 
         <div class="btn-wrap">
           <button type="submit">Login</button>
-          <p class="signin-hint">Don't have an account yet?? <a href="{{ route('custom.register') }}">Sign up</a></p>
+          <p class="signin-hint">Don't have an account yet? <a href="{{ route('custom.register') }}">Sign up</a></p>
         </div>
       </div>
     </form>
