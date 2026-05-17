@@ -248,12 +248,6 @@
   <nav>
     <a class="logo" href="#">PathFinder</a>
     <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="#">Menu 1</a></li>
-        <li><a href="#">Menu 2</a></li>
-        <li><a href="#">Menu 3</a></li>
-        <li><a href="#">Menu 4</a></li>
-      </ul>
       <a class="btn-login" href="{{ route('custom.login') }}">Login</a>
     </div>
   </nav>
@@ -261,7 +255,7 @@
 
   <section class="hero">
     <h1>Job Preparation<br>Made Easy</h1>
-    <p>Some nice copywriting about how delightful and helpful our website is when it comes to job preparation.</p>
+    <p>Accelerate your tech career with automated resumes, smart interview prep, and data-driven market statistics. Get the ultimate IT toolkit to get hired faster.</p>
     <div class="hero-btns">
       <a class="btn-outline" href="#">Learn More</a>
       <a class="btn-solid" href="{{ route('custom.register') }}">Start Now →</a>
