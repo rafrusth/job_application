@@ -6,7 +6,6 @@
   <title>Profile - PathFinder</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* === PathFinder Design System === */
     * {
       margin: 0;
       padding: 0;
@@ -44,7 +43,6 @@
       padding: 20px;
     }
 
-    /* Sidebar */
     .sidebar {
       width: 180px;
       display: flex;
@@ -102,7 +100,6 @@
       object-fit: contain;
     }
 
-    /* Main Content */
     .main-content {
       flex: 1;
       display: flex;
@@ -174,7 +171,6 @@
         background: var(--ink-lt);
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
@@ -216,7 +212,6 @@
 </head>
 <body>
   <div class="container">
-    <!-- Sidebar -->
     <aside class="sidebar">
       <a href="/" class="logo">PathFinder</a>
 
@@ -251,7 +246,6 @@
       </form>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-content">
       <div class="top-section">
         <h1>Your Profile</h1>

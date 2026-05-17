@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CV Builder</title>
   <style>
-    /* === CLIENT CODE === */
+
     * {
       margin: 0;
       padding: 0;
@@ -184,7 +184,6 @@
       font-size: 18px;
     }
 
-    /* Form Elements */
     textarea {
       width: 100%;
       min-height: 40px;
@@ -223,7 +222,6 @@
         background: #2a2826;
     }
 
-    /* Preview Panel */
     .preview-panel {
       flex: 1;
       display: flex;
@@ -266,7 +264,6 @@
       border: 1px solid #cc0000;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
@@ -346,7 +343,6 @@
       </form>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-content">
       <div class="top-section">
         <h1>CV Builder</h1>
@@ -414,7 +410,6 @@
       </form>
     </main>
 
-    <!-- CV Preview -->
     <section class="preview-panel">
       <div class="preview-box">
         @if(session('cvContent'))
@@ -450,7 +445,6 @@
       textareas.forEach(ta => {
         ta.addEventListener('input', updateProgress);
       });
-
       updateProgress();
     });
   </script>

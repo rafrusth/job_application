@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flashcards Setup</title>
   <style>
-    /* === BASE STYLES === */
+
     * {
       margin: 0;
       padding: 0;
@@ -27,6 +27,9 @@
     }
 
     body {
+      background: #e7e1d5;
+      color: #3d3a36;
+      overflow: hidden; 
       background: var(--cream);
       color: var(--ink);
       overflow: hidden;
@@ -39,7 +42,6 @@
       padding: 20px;
     }
 
-    /* === SIDEBAR === */
     .sidebar {
       width: 180px;
       display: flex;
@@ -71,7 +73,7 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      color: var(--ink);
+      color: #3d3a36;
       text-decoration: none;
       transition: all 0.2s ease;
     }
@@ -97,13 +99,14 @@
       object-fit: contain;
     }
 
-    /* === MAIN CONTENT === */
+
     .main-content {
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
       padding-right: 10px;
+      align-items: center;
       align-items: center;
     }
 
@@ -252,47 +255,8 @@
         margin-top: 0 !important;
       }
     }
-    /* Recent Scores */
-    .recent-scores {
-      width: 100%;
-      max-width: 500px;
-      margin: 30px auto 0;
-    }
-    .recent-scores h2 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: var(--ink);
-    }
-    .score-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-    .score-card {
-      background: #fff;
-      padding: 15px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-    .score-card .val {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--ink);
-    }
-    .score-card .meta {
-      font-size: 11px;
-      color: var(--ink-lt);
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-    .score-card .date {
-      font-size: 10px;
-      color: var(--ink-lt);
-      margin-top: 4px;
-    }
+   
+
   </style>
 </head>
 <body>
@@ -404,10 +368,7 @@
         </form>
       </div>
 
-      <div class="recent-scores" id="recentScoresArea" style="display: none;">
-          <h2>Recent Performance</h2>
-          <div class="score-list" id="scoreList"></div>
-      </div>
+
     </main>
   </div>
 
@@ -432,21 +393,7 @@
         document.getElementById('startBtn').style.pointerEvents = 'none';
     });
     
-    // Load recent scores
-    window.onload = function() {
-      const scores = JSON.parse(localStorage.getItem('flashcard_scores') || '[]');
-      if (scores.length > 0) {
-        document.getElementById('recentScoresArea').style.display = 'block';
-        const list = document.getElementById('scoreList');
-        list.innerHTML = scores.map(s => `
-          <div class="score-card">
-            <div class="meta">${s.difficulty}</div>
-            <div class="val">${s.score}%</div>
-            <div class="date">${s.date}</div>
-          </div>
-        `).join('');
-      }
-    };
+
   </script>
 </body>
 </html>

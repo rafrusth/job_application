@@ -94,7 +94,6 @@
       transform: translateY(-1px);
     }
 
-    /* ── Hero ── */
     .hero {
       font-family: 'Geist', sans-serif;
       display: flex;
@@ -176,7 +175,6 @@
       transform: translateY(-1px);
     }
 
-    /* ── Sections row ── */
     .sections-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -210,7 +208,6 @@
       width: 100%;
     }
 
-    /* ── Animations ── */
     @keyframes fadeUp {
       from {
         opacity: 0; transform: translateY(20px);
@@ -229,7 +226,6 @@
       }
     }
 
-    /* ── Responsive ── */
     @media (max-width: 768px) {
       nav { padding: 20px 24px; }
       .nav-links { display: none; }
@@ -240,7 +236,6 @@
 </head>
 <body>
 
-  <!-- Nav -->
   <nav>
     <a class="logo" href="#">PathFinder</a>
     <div class="nav-right">
@@ -254,7 +249,7 @@
     </div>
   </nav>
 
-  <!-- Hero -->
+
   <section class="hero">
     <h1>Job Preparation<br>Made Easy</h1>
     <p>Some nice copywriting about how delightful and helpful our website is when it comes to job preparation.</p>
@@ -264,7 +259,6 @@
     </div>
   </section>
 
-  <!-- Features & Advantages -->
   <div class="sections-row">
     <div class="section-block">
       <h2>Features <span class="arrow">↘</span></h2>

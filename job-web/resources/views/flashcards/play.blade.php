@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcards Session - PathFinder</title>
+  <title>Flashcards - PathFinder</title>
   <style>
     * {
       margin: 0;
@@ -32,7 +32,6 @@
       padding: 20px;
     }
 
-    /* === SIDEBAR === */
     .sidebar {
       width: 180px;
       display: flex;
@@ -90,7 +89,6 @@
       object-fit: contain;
     }
 
-    /* === MAIN CONTENT === */
     .main-content {
       flex: 1;
       display: flex;
@@ -105,7 +103,6 @@
       max-width: 600px;
     }
 
-    /* Progress Bar (from SVG) */
     .progress-container {
       width: 100%;
       height: 8px;
@@ -122,7 +119,6 @@
       transition: width 0.3s ease;
     }
 
-    /* Flashcard (from SVG) */
     .flashcard-card {
       background: #EAE5DA;
       border-radius: 24px;
@@ -167,7 +163,6 @@
       width: 100%;
     }
 
-    /* Controls */
     .controls {
       display: flex;
       gap: 15px;
@@ -210,7 +205,6 @@
       pointer-events: none;
     }
 
-    /* Results Screen */
     .results-screen {
       display: none;
       text-align: center;
@@ -338,7 +332,6 @@
       </form>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-content">
       <div class="game-area-wrapper" id="gameArea">
         <div class="progress-container">
@@ -358,7 +351,6 @@
         </div>
       </div>
 
-      <!-- Results Area -->
       <div class="game-area-wrapper results-screen" id="resultsArea">
           <div class="flashcard-card">
               <h2 style="margin-bottom: 20px;">Session Complete!</h2>
@@ -442,7 +434,7 @@
       const skipRate = skipsUsed / totalQuestions;
 
       let score = 100 - (hintRate * 40) - (skipRate * 35);
-      score = Math.max(0, Math.round(score)); // Keep it between 0-100
+      score = Math.max(0, Math.round(score));
 
       document.getElementById('finalScore').innerText = score;
       document.getElementById('statHints').innerText = hintsUsed;

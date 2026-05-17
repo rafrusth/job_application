@@ -56,7 +56,7 @@ class UserController extends Controller
 
         $request->session()->forget('registration_data');
 
-        return redirect()->route('cv.answers');
+        return redirect()->route('homepage');
     }
 
     public function register(Request $request)
@@ -79,7 +79,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->intended(route('cv.answers'));
+        return redirect()->intended(route('homepage'));
     }
 
     public function login(Request $request)
@@ -87,7 +87,7 @@ class UserController extends Controller
         $auth = ['email' => $request->email, 'password' => $request->password];
 
         if (Auth::attempt($auth)) {
-            return redirect()->intended(route('cv.answers'));
+            return redirect()->intended(route('homepage'));
         }
         else {
             return back()->with('error', 'Invalid credentials');

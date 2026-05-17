@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +41,7 @@
       flex-direction: column;
     }
 
-    /* ── Nav ── */
+
     nav {
       padding: 28px 52px;
       opacity: 0;
@@ -55,7 +56,7 @@
       text-decoration: none;
     }
 
-    /* ── Main layout ── */
+
     main {
       flex: 1;
       display: grid;
@@ -68,7 +69,7 @@
       gap: 80px;
     }
 
-    /* ── Left copy ── */
+
     .copy {
       opacity: 0;
       animation: fadeUp .55s .2s ease forwards;
@@ -90,7 +91,7 @@
       line-height: 1.5;
     }
 
-    /* ── Form ── */
+
     .form-wrap {
       display: flex;
       flex-direction: column;
@@ -146,7 +147,7 @@
       margin-top: 4px;
     }
 
-    /* ── Button ── */
+
     .btn-wrap {
       margin-top: 16px;
       opacity: 0;
@@ -173,7 +174,7 @@
       transform: translateY(-1px);
     }
 
-    /* ── Footer hint ── */
+
     .signin-hint {
       margin-top: 22px;
       font-size: .85rem;
