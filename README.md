@@ -12,6 +12,20 @@ Website ini bertujuan untuk membantu orang-orang dalam mendapatkan pekerjaan. Fi
 
 
 
+## Features ⛓️‍💥
+**CV Builder 📑**
+Bingung cara membuat CV yang terstuktur dan lolos sistem ATS? Dengan fitur PathFinder, kamu tinggal deskripsikan kompetensi apa saja yang kamu punya di bidang tersebut!
+Bingung penulisan struktur dan tata bahasanya? Ngga perlu khawatir! Fitur integrasi AI kami dapat merapikan dan memperbagus isi dari kompetensi yang kamu ketik. 
+
+**Interview Flashcards 🀄**
+Interview terasa susah karena belum tahu apa saja pertanyaannya? Dengan fitur PathFinder, kamu tinggal tentukan latihan untuk interview suatu role IT, tingkat kesulitan, dan banyak pertanyaannya. Dengan begitu, pertanyaan-pertanyaan interview akan dihasilkan dalam bentuk flashcard agar kamu terbiasa dalam menjawab pertanyaannya.
+
+**Job Market Statistics 📈**
+Selain itu, mungkin kamu bingung dengan situasi market pekerjaan saat ini. Dengan fitur PathFinder, kamu tinggal melihat data statistik yang muncul pada Homepage untuk kamu analisa. Dengan begitu, kamu dibekali dengan informasi relevan yang penting sebagai bahan decision-making kamu dalam pemilihan role pekerjaan.
+
+**Personalized Roles 🦺**
+Berkaitan dengan fitur PathFinder sebelumnya, kamu dapat memilih role yang cocok dengan kemauan kamu dalam pencarian kerjanya. Dengan begitu, fitur seperti Flashcards dan Statistics dapat menyesuaikan dengan role yang pilih.
+
 ## Tech Stack 🛠️
 
 **Frontend:** Blade (HTML/CSS)
